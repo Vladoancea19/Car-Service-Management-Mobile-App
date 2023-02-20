@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <style name="LoginTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="boxStrokeColor">@color/text_input_box_color</item>
-        <item name="hintTextColor">@color/text_input_box_color</item>
-
-        <item name="android:windowContentTransitions">true</item>
-    </style>
-</resources>
