@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MechanicSignUp"
+    android:orientation="vertical"
+    android:background="#fff"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:scrollbars="none" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/logo_image"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:src="@drawable/logo"
+            android:layout_marginBottom="-20dp"
+            android:transitionName="logo_image" />
+
+        <TextView
+            android:id="@+id/logo_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome,"
+            android:textSize="30sp"
+            android:fontFamily="@font/bungee"
+            android:textColor="@color/black"
+            android:transitionName="logo_text" />
+
+        <TextView
+            android:id="@+id/slogan_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-20dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/alatsi"
+            android:text="Sign up to start using checkIt!"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:transitionName="slogan_text"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/client_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#00000000"
+                android:elevation="0dp"
+                android:fontFamily="@font/alatsi"
+                android:text="Client"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:transitionName="client_button"/>
+
+            <Button
+                android:id="@+id/mechanic_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#00000000"
+                android:elevation="0dp"
+                android:fontFamily="@font/alatsi"
+                android:text="Mechanic"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:transitionName="mechanic_button"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/first_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="First name"
+                style="@style/LoginTextInputLayoutStyle"
+                android:transitionName="first_name"
+                android:textColor="#808080">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/alatsi"
+                    android:inputType="textPersonName"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#000"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/last_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Last name"
+                style="@style/LoginTextInputLayoutStyle"
+                android:transitionName="last_name"
+                android:textColor="#808080">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/alatsi"
+                    android:inputType="textPersonName"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#000"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                style="@style/LoginTextInputLayoutStyle"
+                android:transitionName="email"
+                android:textColor="#808080">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/alatsi"
+                    android:inputType="textEmailAddress"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#000"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Phone number"
+                style="@style/LoginTextInputLayoutStyle"
+                android:transitionName="phone_number"
+                android:textColor="#808080">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/alatsi"
+                    android:inputType="text|phone"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#000"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                app:passwordToggleEnabled="true"
+                style="@style/LoginTextInputLayoutStyle"
+                android:transitionName="password"
+                android:textColor="#808080">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/alatsi"
+                    android:inputType="textPassword"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#000"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/sign_up_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="0dp"
+            android:background="#000"
+            android:fontFamily="@font/bungee"
+            android:text="Sign Up"
+            android:textColor="#fff"
+            android:transitionName="login_signup"/>
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_margin="5dp"
+            android:background="#00000000"
+            android:elevation="0dp"
+            android:fontFamily="@font/alatsi"
+            android:text="Already have an accout?"
+            android:textColor="#000"
+            android:transitionName="other_option"/>
+
+    </LinearLayout>
+
+</ScrollView>
