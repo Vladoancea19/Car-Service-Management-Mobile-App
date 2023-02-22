@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +27,7 @@ public class Login extends AppCompatActivity {
 
     //Variables for Login page elements
     ImageView logoImage;
+    ToggleButton clientToggleButton, mechanicToggleButton;
     TextInputLayout phoneNumber, password;
     Button signUpButton, loginButton;
 
@@ -37,12 +40,28 @@ public class Login extends AppCompatActivity {
 
         //Elements to variables
         logoImage = findViewById(R.id.logo_image);
+        clientToggleButton = findViewById(R.id.clientToggleButton);
+        mechanicToggleButton = findViewById(R.id.mechanicToggleButton);
         phoneNumber = findViewById(R.id.phone_number);
         password = findViewById(R.id.password);
         signUpButton = findViewById(R.id.sign_up_button);
         loginButton = findViewById(R.id.login_button);
 
         //Managing buttons actions
+        clientToggleButton.setOnClickListener(v -> {
+            clientToggleButton.setChecked(true);
+            clientToggleButton.setTypeface(Typeface.DEFAULT_BOLD);
+            mechanicToggleButton.setChecked(false);
+            mechanicToggleButton.setTypeface(Typeface.DEFAULT);
+        });
+
+        mechanicToggleButton.setOnClickListener(v -> {
+            mechanicToggleButton.setChecked(true);
+            mechanicToggleButton.setTypeface(Typeface.DEFAULT_BOLD);
+            clientToggleButton.setChecked(false);
+            clientToggleButton.setTypeface(Typeface.DEFAULT);
+        });
+
         loginButton.setOnClickListener(this::loginUser);
 
         signUpButton.setOnClickListener(v -> {
@@ -106,7 +125,7 @@ public class Login extends AppCompatActivity {
 
         Query checkClientUser = clientReference.orderByChild("phoneNumber").equalTo(phoneNumberInput);
         Query checkMechanicUser = mechanicReference.orderByChild("phoneNumber").equalTo(phoneNumberInput);
-
+        // pana aici ruleaza
         checkClientUser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -115,7 +134,6 @@ public class Login extends AppCompatActivity {
                     phoneNumber.setErrorEnabled(false);
 
                     String passwordStored = snapshot.child(phoneNumberInput).child("password").getValue(String.class);
-
                     if(passwordStored.equals(passwordInput)) {
                         phoneNumber.setError(null);
                         phoneNumber.setErrorEnabled(false);
@@ -135,7 +153,7 @@ public class Login extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     }
-                    else {
+                    /*else {
                         checkMechanicUser.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -178,9 +196,9 @@ public class Login extends AppCompatActivity {
 
                             }
                         });
-                    }
+                    }*/
                 }
-                else {
+                /*else {
                     checkMechanicUser.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -223,7 +241,7 @@ public class Login extends AppCompatActivity {
 
                         }
                     });
-                }
+                }*/
             }
 
             @Override

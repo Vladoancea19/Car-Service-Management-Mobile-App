@@ -36,6 +36,30 @@
         android:layout_marginBottom="20dp"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <ToggleButton
+                android:id="@+id/clientToggleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="Client"
+                android:textOn="Client"
+                android:checked="true"
+                android:textStyle="bold" />
+
+            <ToggleButton
+                android:id="@+id/mechanicToggleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="Mechanic"
+                android:textOn="Mechanic" />
+
+        </LinearLayout>
+
         <!--        Phone number box-->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/phone_number"
