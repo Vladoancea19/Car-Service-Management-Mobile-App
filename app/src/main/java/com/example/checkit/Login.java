@@ -120,134 +120,110 @@ public class Login extends AppCompatActivity {
         String phoneNumberInput = phoneNumber.getEditText().getText().toString().trim();
         String passwordInput = password.getEditText().getText().toString().trim();
 
-        DatabaseReference clientReference = FirebaseDatabase.getInstance("https://checkit-cd40f-default-rtdb.europe-west1.firebasedatabase.app/").getReference("client_users");
-        DatabaseReference mechanicReference = FirebaseDatabase.getInstance("https://checkit-cd40f-default-rtdb.europe-west1.firebasedatabase.app/").getReference("mechanic_users");
+        if(clientToggleButton.isChecked()) {
+            DatabaseReference clientReference = FirebaseDatabase.getInstance("https://checkit-cd40f-default-rtdb.europe-west1.firebasedatabase.app/").getReference("client_users");
+            Query checkClientUser = clientReference.orderByChild("phoneNumber").equalTo(phoneNumberInput);
 
-        Query checkClientUser = clientReference.orderByChild("phoneNumber").equalTo(phoneNumberInput);
-        Query checkMechanicUser = mechanicReference.orderByChild("phoneNumber").equalTo(phoneNumberInput);
-        // pana aici ruleaza
-        checkClientUser.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()) {
-                    phoneNumber.setError(null);
-                    phoneNumber.setErrorEnabled(false);
+            checkClientUser.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()) {
 
-                    String passwordStored = snapshot.child(phoneNumberInput).child("password").getValue(String.class);
-                    if(passwordStored.equals(passwordInput)) {
                         phoneNumber.setError(null);
                         phoneNumber.setErrorEnabled(false);
 
-                        String firstNameStored = snapshot.child(phoneNumberInput).child("firstName").getValue(String.class);
-                        String lastNameStored = snapshot.child(phoneNumberInput).child("lastName").getValue(String.class);
-                        String emailStored = snapshot.child(phoneNumberInput).child("email").getValue(String.class);
-                        String phoneNumberStored = snapshot.child(phoneNumberInput).child("phoneNumber").getValue(String.class);
 
-                        Intent intent = new Intent(Login.this, ClientDashboard.class);
+                        String passwordStored = snapshot.child(phoneNumberInput).child("password").getValue(String.class);
 
-                        String fullNameStored = firstNameStored + " " + lastNameStored;
-                        intent.putExtra("full_name", fullNameStored);
-                        intent.putExtra("email", emailStored);
-                        intent.putExtra("phone_number", phoneNumberStored);
+                        if(passwordStored.equals(passwordInput)) {
+                            password.setError(null);
+                            password.setErrorEnabled(false);
 
-                        startActivity(intent);
-                        finish();
+                            String firstNameStored = snapshot.child(phoneNumberInput).child("firstName").getValue(String.class);
+                            String lastNameStored = snapshot.child(phoneNumberInput).child("lastName").getValue(String.class);
+                            String emailStored = snapshot.child(phoneNumberInput).child("email").getValue(String.class);
+                            String phoneNumberStored = snapshot.child(phoneNumberInput).child("phoneNumber").getValue(String.class);
+
+                            Intent intent = new Intent(Login.this, ClientDashboard.class);
+
+                            String fullNameStored = firstNameStored + " " + lastNameStored;
+                            intent.putExtra("full_name", fullNameStored);
+                            intent.putExtra("email", emailStored);
+                            intent.putExtra("phone_number", phoneNumberStored);
+
+                            startActivity(intent);
+                            finish();
+                        }
+                        else {
+                            phoneNumber.setError("Wrong credentials");
+                            password.setError("Wrong credentials");
+                        }
+
                     }
-                    /*else {
-                        checkMechanicUser.addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                if(snapshot.exists()) {
-                                    phoneNumber.setError(null);
-                                    phoneNumber.setErrorEnabled(false);
-
-                                    String passwordStored = snapshot.child(phoneNumberInput).child("password").getValue(String.class);
-
-                                    if (passwordStored.equals(passwordInput)) {
-                                        phoneNumber.setError(null);
-                                        phoneNumber.setErrorEnabled(false);
-
-                                        String firstNameStored = snapshot.child(phoneNumberInput).child("firstName").getValue(String.class);
-                                        String lastNamestored = snapshot.child(phoneNumberInput).child("lastName").getValue(String.class);
-                                        String emailStored = snapshot.child(phoneNumberInput).child("email").getValue(String.class);
-                                        String phoneNumberStored = snapshot.child(phoneNumberInput).child("phoneNumber").getValue(String.class);
-
-                                        Intent intent = new Intent(Login.this, MechanicDashboard.class);
-
-                                        String fullNameStored = firstNameStored + " " + lastNamestored;
-                                        intent.putExtra("full_name", fullNameStored);
-                                        intent.putExtra("email", emailStored);
-                                        intent.putExtra("phone_number", phoneNumberStored);
-
-                                        startActivity(intent);
-                                        finish();
-                                    }
-                                    else {
-                                        phoneNumber.setError("Wrong login credentials!");
-                                    }
-                                }
-                                else {
-                                    phoneNumber.setError("Wrong login credentials!");
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-                        });
-                    }*/
+                    else {
+                        phoneNumber.setError("Wrong credentials");
+                        password.setError("Wrong credentials");
+                    }
                 }
-                /*else {
-                    checkMechanicUser.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(snapshot.exists()) {
-                                phoneNumber.setError(null);
-                                phoneNumber.setErrorEnabled(false);
 
-                                String passwordStored = snapshot.child(phoneNumberInput).child("password").getValue(String.class);
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-                                if (passwordStored.equals(passwordInput)) {
-                                    phoneNumber.setError(null);
-                                    phoneNumber.setErrorEnabled(false);
+                }
+            });
+        }
+        else {
+            DatabaseReference mechanicReference = FirebaseDatabase.getInstance("https://checkit-cd40f-default-rtdb.europe-west1.firebasedatabase.app/").getReference("mechanic_users");
+            Query checkMechanicUser = mechanicReference.orderByChild("phoneNumber").equalTo(phoneNumberInput);
 
-                                    String firstNameStored = snapshot.child(phoneNumberInput).child("firstName").getValue(String.class);
-                                    String lastNamestored = snapshot.child(phoneNumberInput).child("lastName").getValue(String.class);
-                                    String emailStored = snapshot.child(phoneNumberInput).child("email").getValue(String.class);
-                                    String phoneNumberStored = snapshot.child(phoneNumberInput).child("phoneNumber").getValue(String.class);
+            checkMechanicUser.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()) {
 
-                                    Intent intent = new Intent(Login.this, MechanicDashboard.class);
+                        phoneNumber.setError(null);
+                        phoneNumber.setErrorEnabled(false);
 
-                                    String fullNameStored = firstNameStored + " " + lastNamestored;
-                                    intent.putExtra("full_name", fullNameStored);
-                                    intent.putExtra("email", emailStored);
-                                    intent.putExtra("phone_number", phoneNumberStored);
 
-                                    startActivity(intent);
-                                    finish();
-                                }
-                                else {
-                                    phoneNumber.setError("Wrong login credentials!");
-                                }
-                            }
-                            else {
-                                phoneNumber.setError("Wrong login credentials!");
-                            }
+                        String passwordStored = snapshot.child(phoneNumberInput).child("password").getValue(String.class);
+
+                        if(passwordStored.equals(passwordInput)) {
+                            password.setError(null);
+                            password.setErrorEnabled(false);
+
+                            String firstNameStored = snapshot.child(phoneNumberInput).child("firstName").getValue(String.class);
+                            String lastNameStored = snapshot.child(phoneNumberInput).child("lastName").getValue(String.class);
+                            String emailStored = snapshot.child(phoneNumberInput).child("email").getValue(String.class);
+                            String phoneNumberStored = snapshot.child(phoneNumberInput).child("phoneNumber").getValue(String.class);
+
+                            Intent intent = new Intent(Login.this, MechanicDashboard.class);
+
+                            String fullNameStored = firstNameStored + " " + lastNameStored;
+                            intent.putExtra("full_name", fullNameStored);
+                            intent.putExtra("email", emailStored);
+                            intent.putExtra("phone_number", phoneNumberStored);
+
+                            startActivity(intent);
+                            finish();
+                        }
+                        else {
+                            phoneNumber.setError("Wrong credentials");
+                            password.setError("Wrong credentials");
                         }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                    else {
+                        phoneNumber.setError("Wrong credentials");
+                        password.setError("Wrong credentials");
+                    }
+                }
 
-                        }
-                    });
-                }*/
-            }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+        }
 
-            }
-        });
     }
 }

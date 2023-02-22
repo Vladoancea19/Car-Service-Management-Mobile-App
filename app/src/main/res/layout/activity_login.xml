@@ -40,23 +40,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
             <ToggleButton
                 android:id="@+id/clientToggleButton"
+                android:background="@drawable/togglebutton_selector"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textOff="Client"
                 android:textOn="Client"
                 android:checked="true"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textSize="14sp"/>
 
             <ToggleButton
                 android:id="@+id/mechanicToggleButton"
+                android:background="@drawable/togglebutton_selector"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textOff="Mechanic"
-                android:textOn="Mechanic" />
+                android:textOn="Mechanic"
+                android:textSize="14sp"/>
 
         </LinearLayout>
 

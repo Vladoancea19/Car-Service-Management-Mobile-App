@@ -49,6 +49,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:orientation="horizontal" >
 
             <Button
@@ -58,7 +59,6 @@
                 android:layout_gravity="center"
                 android:background="#00000000"
                 android:elevation="0dp"
-                android:fontFamily="@font/alatsi"
                 android:text="Client"
                 android:textColor="#000"
                 android:textSize="14sp"
@@ -72,12 +72,11 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:background="#00000000"
+                android:background="@drawable/togglebutton_on"
                 android:elevation="0dp"
-                android:fontFamily="@font/alatsi"
                 android:text="Mechanic"
                 android:textColor="#000"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 android:transitionName="mechanic_button"/>
 

@@ -2,9 +2,11 @@ package com.example.checkit;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -14,6 +16,12 @@ import android.widget.Button;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.client.android.Intents;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
@@ -23,7 +31,7 @@ public class MechanicOngoingFragment extends Fragment {
     private AlertDialog.Builder dialogBuilder1, dialogBuilder2;
     private AlertDialog dialog1, dialog2;
     private Button addNew, closePopup1, closePopup2, scanQR, next1, next2;
-    private TextInputEditText phoneNumber;
+    private TextInputEditText phoneNumber, fullName;
     private View popupView;
 
     @Override
@@ -49,16 +57,15 @@ public class MechanicOngoingFragment extends Fragment {
         closePopup1 = popupView.findViewById(R.id.close_popup);
         scanQR = popupView.findViewById(R.id.or_scan_qr_code);
         next1 = popupView.findViewById(R.id.next_button);
+        phoneNumber = popupView.findViewById(R.id.phone_number_text);
+        fullName = popupView.findViewById(R.id.full_name_text);
 
         //Managing buttons actions
         scanQR.setOnClickListener(v -> scanQR());
-        next1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Colectare date
-                dialog1.dismiss();
-                carInfo();
-            }
+        next1.setOnClickListener(v -> {
+            //Colectare date
+            dialog1.dismiss();
+            carInfo();
         });
 
         //Create + show popup window
@@ -95,22 +102,39 @@ public class MechanicOngoingFragment extends Fragment {
 
     private void scanQR() {
         ScanOptions options = new ScanOptions();
-//        options.setBeepEnabled(true);
+        options.setBeepEnabled(false);
         options.setOrientationLocked(true);
         options.setCaptureActivity(CaptureAct.class);
         barLauncher.launch(options);
     }
 
     ActivityResultLauncher<ScanOptions> barLauncher = registerForActivityResult(new ScanContract(), result -> {
-       if(result.getContents() != null) {
-           //????????????
-           phoneNumber = popupView.findViewById(R.id.phone_number_text);
-           phoneNumber.setText(result.toString());
+        if (result.getContents() != null) {
+            String resultValue = result.getContents();
 
-            AlertDialog.Builder build = new AlertDialog.Builder(getActivity());
-            build.setTitle("Result");
-            build.setMessage(result.getContents());
-            build.setPositiveButton("OK", (dialog, which) -> dialog.dismiss()).show();
-       }
+            DatabaseReference clientReference = FirebaseDatabase.getInstance("https://checkit-cd40f-default-rtdb.europe-west1.firebasedatabase.app/").getReference("client_users");
+            Query checkClientUser = clientReference.orderByChild("phoneNumber").equalTo(resultValue);
+
+            checkClientUser.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()) {
+
+                        String firstNameStored = snapshot.child(resultValue).child("firstName").getValue(String.class);
+                        String lastNameStored = snapshot.child(resultValue).child("lastName").getValue(String.class);
+
+                        String fullNameStored = firstNameStored + " " + lastNameStored;
+
+                        fullName.setText(fullNameStored);
+                        phoneNumber.setText(result.getContents());
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
     });
 }

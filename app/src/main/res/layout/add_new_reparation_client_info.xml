@@ -93,11 +93,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/title"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/aldrich"
         android:text="Full name"
         android:textColor="#000000"
-        android:textSize="16sp"
-        android:layout_marginTop="10dp"/>
+        android:textSize="16sp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/full_name"
@@ -107,6 +107,7 @@
         android:layout_below="@+id/full_name_label">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/full_name_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/alatsi"

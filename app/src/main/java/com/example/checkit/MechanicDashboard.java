@@ -29,9 +29,6 @@ public class MechanicDashboard extends AppCompatActivity {
                 case R.id.bottom_nav_ongoing:
                     fragment = new MechanicOngoingFragment();
                     break;
-//                case R.id.bottom_nav_history:
-//                    fragment = new ClientHistoryFragment();
-//                    break;
                 case R.id.bottom_nav_profile:
                     fragment = new MechanicProfileFragment();
                     break;
