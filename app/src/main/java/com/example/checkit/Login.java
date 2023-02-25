@@ -65,7 +65,7 @@ public class Login extends AppCompatActivity {
         loginButton.setOnClickListener(this::loginUser);
 
         signUpButton.setOnClickListener(v -> {
-            Intent intent = new Intent(Login.this, ClientSignUp.class);
+            Intent intent = new Intent(Login.this, SignUp.class);
 
             Pair[] pairs = new Pair[5];
             pairs[0] = new Pair<View, String>(logoImage, "logo_image");

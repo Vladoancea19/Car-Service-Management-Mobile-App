@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/fragment_container"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    tools:context=".SignUp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/logo_image"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:src="@drawable/logo"
+        android:layout_marginBottom="-20dp"
+        android:transitionName="logo_image" />
+
+    <TextView
+        android:id="@+id/logo_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome,"
+        android:textSize="30sp"
+        android:fontFamily="@font/bungee"
+        android:textColor="@color/black"
+        android:transitionName="logo_text" />
+
+    <TextView
+        android:id="@+id/slogan_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-20dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/alatsi"
+        android:text="Sign up to start using checkIt!"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:transitionName="slogan_text"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal" >
+
+        <ToggleButton
+            android:id="@+id/clientToggleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/togglebutton_selector"
+            android:elevation="0dp"
+            android:textOff="Client"
+            android:textOn="Client"
+            android:textColor="#000"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:checked="true"
+            android:transitionName="client_button"/>
+
+        <ToggleButton
+            android:id="@+id/mechanicToggleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/togglebutton_selector"
+            android:elevation="0dp"
+            android:textOff="Mechanic"
+            android:textOn="Mechanic"
+            android:textColor="#000"
+            android:textSize="14sp"
+            android:transitionName="mechanic_button"/>
+
+    </LinearLayout>
+
+</LinearLayout>

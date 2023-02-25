@@ -4,83 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ClientSignUp"
+    tools:context=".MechanicSignUpFragment"
     android:orientation="vertical"
     android:background="#fff"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
     android:scrollbars="none" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
-
-        <ImageView
-            android:id="@+id/logo_image"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:src="@drawable/logo"
-            android:layout_marginBottom="-20dp"
-            android:transitionName="logo_image" />
-
-        <TextView
-            android:id="@+id/logo_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Welcome,"
-            android:textSize="30sp"
-            android:fontFamily="@font/bungee"
-            android:textColor="@color/black"
-            android:transitionName="logo_text" />
-
-        <TextView
-            android:id="@+id/slogan_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-20dp"
-            android:layout_marginBottom="10dp"
-            android:fontFamily="@font/alatsi"
-            android:text="Sign up to start using checkIt!"
-            android:textColor="#000000"
-            android:textSize="16sp"
-            android:transitionName="slogan_text"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal" >
-
-            <Button
-                android:id="@+id/client_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/togglebutton_on"
-                android:elevation="0dp"
-                android:text="Client"
-                android:textColor="#000"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:transitionName="client_button"/>
-
-            <Button
-                android:id="@+id/mechanic_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:background="#00000000"
-                android:elevation="0dp"
-                android:text="Mechanic"
-                android:textColor="#000"
-                android:textSize="14sp"
-                android:transitionName="mechanic_button"/>
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

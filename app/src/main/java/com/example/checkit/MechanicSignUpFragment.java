@@ -1,13 +1,15 @@
 package com.example.checkit;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
 import android.util.Pair;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,76 +19,46 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class MechanicSignUp extends AppCompatActivity {
+public class MechanicSignUpFragment extends Fragment {
 
     //Variables for SignUp page elements
     ImageView logoImage;
     TextView logoText, sloganText;
     TextInputLayout firstName, lastName, email, phoneNumber, password;
-    Button signUpButton, loginButton, mechanicButton, clientButton;
+    Button signUpButton, loginButton;
 
     //Firebase variables
     FirebaseDatabase database;
     DatabaseReference reference;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_mechanic_sign_up);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_mechanic_sign_up, container, false);
 
         //Elements to variables
-        logoImage = findViewById(R.id.logo_image);
-        logoText = findViewById(R.id.logo_text);
-        sloganText = findViewById(R.id.slogan_text);
-        clientButton = findViewById(R.id.client_button);
-        mechanicButton = findViewById(R.id.mechanic_button);
-        firstName = findViewById(R.id.first_name);
-        lastName = findViewById(R.id.last_name);
-        email = findViewById(R.id.email);
-        phoneNumber = findViewById(R.id.phone_number);
-        password = findViewById(R.id.password);
-        signUpButton = findViewById(R.id.sign_up_button);
-        loginButton = findViewById(R.id.login_button);
-
-        //Managing buttons actions
-        clientButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MechanicSignUp.this, ClientSignUp.class);
-
-            Pair[] pairs = new Pair[12];
-            pairs[0] = new Pair<View, String>(logoImage, "logo_image");
-            pairs[1] = new Pair<View, String>(logoText, "logo_text");
-            pairs[2] = new Pair<View, String>(sloganText, "slogan_text");
-            pairs[3] = new Pair<View, String>(firstName, "first_name");
-            pairs[4] = new Pair<View, String>(lastName, "last_name");
-            pairs[5] = new Pair<View, String>(email, "email");
-            pairs[6] = new Pair<View, String>(phoneNumber, "phone_number");
-            pairs[7] = new Pair<View, String>(password, "password");
-            pairs[8] = new Pair<View, String>(clientButton, "client_button");
-            pairs[9] = new Pair<View, String>(mechanicButton, "mechanic_button");
-            pairs[10] = new Pair<View, String>(signUpButton, "login_signup");
-            pairs[11] = new Pair<View, String>(loginButton, "other_option");
-
-
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MechanicSignUp.this, pairs);
-            startActivity(intent, options.toBundle());
-        });
+        logoImage = view.findViewById(R.id.logo_image);
+        logoText = view.findViewById(R.id.logo_text);
+        sloganText = view.findViewById(R.id.slogan_text);
+        firstName = view.findViewById(R.id.first_name);
+        lastName = view.findViewById(R.id.last_name);
+        email = view.findViewById(R.id.email);
+        phoneNumber = view.findViewById(R.id.phone_number);
+        password = view.findViewById(R.id.password);
+        signUpButton = view.findViewById(R.id.sign_up_button);
+        loginButton = view.findViewById(R.id.login_button);
 
         signUpButton.setOnClickListener(this::registerUser);
 
         loginButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MechanicSignUp.this, Login.class);
+            Intent intent = new Intent(getActivity(), Login.class);
 
-            Pair[] pairs = new Pair[5];
-            pairs[0] = new Pair<View, String>(logoImage, "logo_image");
-            pairs[1] = new Pair<View, String>(phoneNumber, "phone_number");
-            pairs[2] = new Pair<View, String>(password, "password");
-            pairs[3] = new Pair<View, String>(loginButton, "login_signup");
-            pairs[4] = new Pair<View, String>(signUpButton, "other_option");
-
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MechanicSignUp.this, pairs);
-            startActivity(intent, options.toBundle());
+            startActivity(intent);
+            getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
+
+        return view;
     }
 
     private boolean validateFirstName() {
@@ -197,19 +169,12 @@ public class MechanicSignUp extends AppCompatActivity {
         reference.child(phoneNumberInput).setValue(mechanicUserHelper);
 
         //Transition to Login page
-        Intent intent = new Intent(MechanicSignUp.this, Login.class);
+        Intent intent = new Intent(getActivity(), Login.class);
 
-        Pair[] pairs = new Pair[5];
-        pairs[0] = new Pair<View, String>(logoImage, "logo_image");
-        pairs[1] = new Pair<View, String>(phoneNumber, "phone_number");
-        pairs[2] = new Pair<View, String>(password, "password");
-        pairs[3] = new Pair<View, String>(loginButton, "login_signup");
-        pairs[4] = new Pair<View, String>(signUpButton, "other_option");
-
-        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(MechanicSignUp.this, pairs);
-        startActivity(intent, options.toBundle());
+        startActivity(intent);
+        getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
         //Pop-up after succesfully creating account
-        Toast.makeText(this, "Your account has been successfully created!", Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), "Your account has been successfully created!", Toast.LENGTH_LONG).show();
     }
 }
