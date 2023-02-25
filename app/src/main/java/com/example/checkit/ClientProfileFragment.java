@@ -4,10 +4,6 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,20 +11,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
-import java.util.Objects;
-
 public class ClientProfileFragment extends Fragment {
 
-    private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
     private TextView fullName, email, phoneNumber;
-    private Button scanQrCode, closePopup;
     private ImageView qrCodeImage;
 
     @Override
@@ -39,7 +33,7 @@ public class ClientProfileFragment extends Fragment {
 
         //Elements to variables
         fullName = view.findViewById(R.id.full_name);
-        scanQrCode = view.findViewById(R.id.scan_qr_code);
+        Button scanQrCode = view.findViewById(R.id.scan_qr_code);
         email = view.findViewById(R.id.email);
         phoneNumber = view.findViewById(R.id.phone_number);
 
@@ -53,7 +47,7 @@ public class ClientProfileFragment extends Fragment {
     }
 
     private void showUserData() {
-        Intent intent = getActivity().getIntent();
+        Intent intent = requireActivity().getIntent();
 
         String userFullName = intent.getStringExtra("full_name");
         String userEmail = intent.getStringExtra("email");
@@ -65,11 +59,11 @@ public class ClientProfileFragment extends Fragment {
     }
 
     public void showQrCode() {
-        dialogBuilder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
         final View popupView = getLayoutInflater().inflate(R.layout.qr_code_popup, null);
 
         //Elements to variables
-        closePopup = popupView.findViewById(R.id.close_popup);
+        Button closePopup = popupView.findViewById(R.id.close_popup);
         qrCodeImage = popupView.findViewById(R.id.qr_code_image);
 
         generateQR();

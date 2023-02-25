@@ -27,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
     //TODO: Telefon + parola identice pentru un client si un mecanic
     //TODO: Editare email din pagine de profil
 
-    private static int SPLASH_SCREEN = 3000;
-
     //Variables for SplashScreen page elements
     Animation topAnimation, bottomAnimation;
     ImageView logoImage;
@@ -52,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         logoText.setAnimation(bottomAnimation);
 
         //Animation delay + transition to Login page
+        int SPLASH_SCREEN = 3000;
         new Handler().postDelayed(() -> {
             Intent intent = new Intent(MainActivity.this, Login.class);
 

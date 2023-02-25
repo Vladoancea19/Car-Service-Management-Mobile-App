@@ -3,6 +3,7 @@ package com.example.checkit;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
@@ -22,6 +23,7 @@ public class MechanicDashboard extends AppCompatActivity {
         bottomMenu();
     }
 
+    @SuppressLint("NonConstantResourceId")
     private void bottomMenu() {
         chipNavigationBar.setOnItemSelectedListener(i -> {
             Fragment fragment = null;
@@ -33,6 +35,7 @@ public class MechanicDashboard extends AppCompatActivity {
                     fragment = new MechanicProfileFragment();
                     break;
             }
+            assert fragment != null;
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
         });
     }

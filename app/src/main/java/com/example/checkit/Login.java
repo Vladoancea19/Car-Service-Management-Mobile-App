@@ -1,8 +1,5 @@
 package com.example.checkit;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -12,8 +9,10 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +21,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Objects;
 
 public class Login extends AppCompatActivity {
 
@@ -80,7 +81,7 @@ public class Login extends AppCompatActivity {
     }
 
     private boolean validatePhoneNumber() {
-        String phoneNumberInput = phoneNumber.getEditText().getText().toString();
+        String phoneNumberInput = Objects.requireNonNull(phoneNumber.getEditText()).getText().toString();
 
         if(phoneNumberInput.isEmpty()) {
             phoneNumber.setError("Please enter your phone number");
@@ -94,7 +95,7 @@ public class Login extends AppCompatActivity {
     }
 
     private boolean validatePassword() {
-        String passwordInput = password.getEditText().getText().toString();
+        String passwordInput = Objects.requireNonNull(password.getEditText()).getText().toString();
 
         if(passwordInput.isEmpty()) {
             password.setError("Please enter your password");
@@ -117,8 +118,8 @@ public class Login extends AppCompatActivity {
     }
 
     private void isUser() {
-        String phoneNumberInput = phoneNumber.getEditText().getText().toString().trim();
-        String passwordInput = password.getEditText().getText().toString().trim();
+        String phoneNumberInput = Objects.requireNonNull(phoneNumber.getEditText()).getText().toString().trim();
+        String passwordInput = Objects.requireNonNull(password.getEditText()).getText().toString().trim();
 
         if(clientToggleButton.isChecked()) {
             DatabaseReference clientReference = FirebaseDatabase.getInstance("https://checkit-cd40f-default-rtdb.europe-west1.firebasedatabase.app/").getReference("client_users");
@@ -135,6 +136,7 @@ public class Login extends AppCompatActivity {
 
                         String passwordStored = snapshot.child(phoneNumberInput).child("password").getValue(String.class);
 
+                        assert passwordStored != null;
                         if(passwordStored.equals(passwordInput)) {
                             password.setError(null);
                             password.setErrorEnabled(false);
@@ -187,6 +189,7 @@ public class Login extends AppCompatActivity {
 
                         String passwordStored = snapshot.child(phoneNumberInput).child("password").getValue(String.class);
 
+                        assert passwordStored != null;
                         if(passwordStored.equals(passwordInput)) {
                             password.setError(null);
                             password.setErrorEnabled(false);

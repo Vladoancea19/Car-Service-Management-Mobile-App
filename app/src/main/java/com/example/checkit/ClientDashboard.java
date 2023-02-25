@@ -1,5 +1,6 @@
 package com.example.checkit;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +23,7 @@ public class ClientDashboard extends AppCompatActivity {
         bottomMenu();
     }
 
+    @SuppressLint("NonConstantResourceId")
     private void bottomMenu() {
         chipNavigationBar.setOnItemSelectedListener(i -> {
             Fragment fragment = null;
@@ -36,6 +38,7 @@ public class ClientDashboard extends AppCompatActivity {
                     fragment = new ClientProfileFragment();
                     break;
             }
+            assert fragment != null;
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
         });
     }

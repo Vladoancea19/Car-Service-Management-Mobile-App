@@ -4,9 +4,6 @@ public class MechanicUserHelper {
 
     String firstName, lastName, email, phoneNumber, password;
 
-    public MechanicUserHelper() {
-    }
-
     public MechanicUserHelper(String firstName, String lastName, String email, String phoneNumber, String password) {
         this.firstName = firstName;
         this.lastName = lastName;

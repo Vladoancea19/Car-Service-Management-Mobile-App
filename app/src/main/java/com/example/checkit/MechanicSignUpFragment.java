@@ -1,12 +1,7 @@
 package com.example.checkit;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +10,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Objects;
 
 public class MechanicSignUpFragment extends Fragment {
 
@@ -55,14 +54,14 @@ public class MechanicSignUpFragment extends Fragment {
             Intent intent = new Intent(getActivity(), Login.class);
 
             startActivity(intent);
-            getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            requireActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
 
         return view;
     }
 
     private boolean validateFirstName() {
-        String firstNameInput = firstName.getEditText().getText().toString();
+        String firstNameInput = Objects.requireNonNull(firstName.getEditText()).getText().toString();
 
         if(firstNameInput.isEmpty()) {
             firstName.setError("This field cannot be empty!");
@@ -76,7 +75,7 @@ public class MechanicSignUpFragment extends Fragment {
     }
 
     private boolean validateLastName() {
-        String lastNameInput = lastName.getEditText().getText().toString();
+        String lastNameInput = Objects.requireNonNull(lastName.getEditText()).getText().toString();
 
         if(lastNameInput.isEmpty()) {
             lastName.setError("This field cannot be empty!");
@@ -90,7 +89,7 @@ public class MechanicSignUpFragment extends Fragment {
     }
 
     private boolean validateEmail() {
-        String emailInput = email.getEditText().getText().toString();
+        String emailInput = Objects.requireNonNull(email.getEditText()).getText().toString();
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
         if(emailInput.isEmpty()) {
@@ -108,7 +107,7 @@ public class MechanicSignUpFragment extends Fragment {
     }
 
     private boolean validatePhoneNumber() {
-        String phoneNumberInput = phoneNumber.getEditText().getText().toString();
+        String phoneNumberInput = Objects.requireNonNull(phoneNumber.getEditText()).getText().toString();
 
         if(phoneNumberInput.isEmpty()) {
             phoneNumber.setError("This field cannot be empty!");
@@ -122,7 +121,7 @@ public class MechanicSignUpFragment extends Fragment {
     }
 
     private boolean validatePassword() {
-        String passwordInput = password.getEditText().getText().toString();
+        String passwordInput = Objects.requireNonNull(password.getEditText()).getText().toString();
         String passwordPattern = "^" +
                 "(?=.*[a-zA-Z])" +
                 "(?=.*[0-9])" +
@@ -156,11 +155,11 @@ public class MechanicSignUpFragment extends Fragment {
         reference = database.getReference("mechanic_users");
 
         //Get the data from the input fields
-        String firstNameInput = firstName.getEditText().getText().toString();
-        String lastNameInput = lastName.getEditText().getText().toString();
-        String emailInput = email.getEditText().getText().toString();
-        String phoneNumberInput = phoneNumber.getEditText().getText().toString();
-        String passwordInput = password.getEditText().getText().toString();
+        String firstNameInput = Objects.requireNonNull(firstName.getEditText()).getText().toString();
+        String lastNameInput = Objects.requireNonNull(lastName.getEditText()).getText().toString();
+        String emailInput = Objects.requireNonNull(email.getEditText()).getText().toString();
+        String phoneNumberInput = Objects.requireNonNull(phoneNumber.getEditText()).getText().toString();
+        String passwordInput = Objects.requireNonNull(password.getEditText()).getText().toString();
 
 
         //Save input into database
@@ -172,9 +171,9 @@ public class MechanicSignUpFragment extends Fragment {
         Intent intent = new Intent(getActivity(), Login.class);
 
         startActivity(intent);
-        getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        requireActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
-        //Pop-up after succesfully creating account
+        //Pop-up after successfully creating account
         Toast.makeText(getActivity(), "Your account has been successfully created!", Toast.LENGTH_LONG).show();
     }
 }

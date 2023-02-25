@@ -31,7 +31,7 @@ public class MechanicProfileFragment extends Fragment {
     }
 
     private void showUserData() {
-        Intent intent = getActivity().getIntent();
+        Intent intent = requireActivity().getIntent();
 
         String userFullName = intent.getStringExtra("full_name");
         String userEmail = intent.getStringExtra("email");

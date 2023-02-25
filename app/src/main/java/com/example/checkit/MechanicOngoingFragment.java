@@ -1,38 +1,31 @@
 package com.example.checkit;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.zxing.client.android.Intents;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 
 public class MechanicOngoingFragment extends Fragment {
 
-    private AlertDialog.Builder dialogBuilder1, dialogBuilder2;
     private AlertDialog dialog1, dialog2;
-    private Button addNew, closePopup1, closePopup2, scanQR, next1, next2;
+    private Button scanQR;
     private TextInputEditText phoneNumber, fullName;
-    private View popupView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,7 +34,7 @@ public class MechanicOngoingFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_mechanic_ongoing, container, false);
 
         //Elements to variables
-        addNew = view.findViewById(R.id.add_new);
+        Button addNew = view.findViewById(R.id.add_new);
 
         //Managing buttons actions
         addNew.setOnClickListener(v -> clientInfo());
@@ -50,13 +43,13 @@ public class MechanicOngoingFragment extends Fragment {
     }
 
     private void clientInfo() {
-        dialogBuilder1 = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder dialogBuilder1 = new AlertDialog.Builder(getActivity());
         final View popupView = getLayoutInflater().inflate(R.layout.add_new_reparation_client_info, null);
 
         //Elements to variables
-        closePopup1 = popupView.findViewById(R.id.close_popup);
+        Button closePopup1 = popupView.findViewById(R.id.close_popup);
         scanQR = popupView.findViewById(R.id.or_scan_qr_code);
-        next1 = popupView.findViewById(R.id.next_button);
+        Button next1 = popupView.findViewById(R.id.next_button);
         phoneNumber = popupView.findViewById(R.id.phone_number_text);
         fullName = popupView.findViewById(R.id.full_name_text);
 
@@ -78,14 +71,14 @@ public class MechanicOngoingFragment extends Fragment {
     }
 
     private void carInfo() {
-        dialogBuilder2 = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder dialogBuilder2 = new AlertDialog.Builder(getActivity());
         //final View popupView
-        popupView = getLayoutInflater().inflate(R.layout.add_new_reparation_car_info, null);
+        View popupView = getLayoutInflater().inflate(R.layout.add_new_reparation_car_info, null);
 
         //Elements to variables
-        closePopup2 = popupView.findViewById(R.id.close_popup);
+        Button closePopup2 = popupView.findViewById(R.id.close_popup);
         scanQR = popupView.findViewById(R.id.or_scan_qr_code);
-        next2 = popupView.findViewById(R.id.next_button);
+        Button next2 = popupView.findViewById(R.id.next_button);
 
         //Managing buttons actions
         scanQR.setOnClickListener(v -> scanQR());
