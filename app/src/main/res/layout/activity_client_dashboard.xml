@@ -19,7 +19,6 @@
         app:cnb_orientationMode="horizontal"
         android:layout_margin="30dp"
         android:padding="5dp"
-        android:elevation="8dp"
-        />
+        android:elevation="8dp"/>
 
 </RelativeLayout>

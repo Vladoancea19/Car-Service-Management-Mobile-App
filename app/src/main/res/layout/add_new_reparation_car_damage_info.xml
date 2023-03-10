@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:scrollbars="vertical">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -28,7 +29,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/aldrich"
-            android:text="Step: 1 of 3"
+            android:text="Step: 3 of 3"
             android:textColor="#000000"
             android:textSize="18sp" />
 
@@ -43,7 +44,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="16.25dp"
+                android:layout_marginLeft="16.5dp"
                 android:background="@drawable/client" />
 
             <TextView
@@ -63,7 +64,17 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="70dp"
                 android:layout_marginRight="70dp"
-                android:background="@drawable/car_bw" />
+                android:background="@drawable/car" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/car_icon"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/aldrich"
+                android:text="Car info"
+                android:textColor="#000000"
+                android:textSize="14sp" />
 
 
             <ImageView
@@ -72,7 +83,18 @@
                 android:layout_height="40dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="16.25dp"
-                android:background="@drawable/tools_bw" />
+                android:background="@drawable/tools" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tools_bw_icon"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="4dp"
+                android:fontFamily="@font/aldrich"
+                android:text="To repair"
+                android:textColor="#000000"
+                android:textSize="14sp" />
 
 
         </RelativeLayout>
@@ -85,7 +107,7 @@
             android:layout_below="@id/step_icons"
             android:layout_marginTop="25dp"
             android:fontFamily="@font/aldrich"
-            android:text="Client's personal informations"
+            android:text="To repair"
             android:textColor="#000000"
             android:textSize="20sp" />
 
@@ -96,7 +118,7 @@
             android:layout_below="@+id/title"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/aldrich"
-            android:text="Full name"
+            android:text="Car model"
             android:textColor="#000000"
             android:textSize="16sp" />
 
@@ -108,12 +130,12 @@
             android:layout_below="@+id/full_name_label">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/full_name_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/alatsi"
-                android:inputType="textPersonName"
-                android:textColor="#000000"
+                android:inputType="textPassword"
+                android:textColor="#000"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -126,7 +148,7 @@
             android:layout_below="@+id/full_name"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/aldrich"
-            android:text="Phone number"
+            android:text="Plate number"
             android:textColor="#000000"
             android:textSize="16sp" />
 
@@ -138,40 +160,24 @@
             android:layout_below="@+id/phone_number_label">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/phone_number_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/alatsi"
-                android:inputType="number"
-                android:textColor="#000000"
+                android:inputType="textPassword"
+                android:textColor="#000"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/or_scan_qr_code"
+            android:id="@+id/submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/phone_number"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/aldrich"
-            android:text="Or scan QR code"
-            android:textSize="12sp"
-            app:icon="@drawable/scan_qr"
-            app:iconGravity="textEnd"
-            app:iconSize="30dp">
-
-        </com.google.android.material.button.MaterialButton>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/next_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/or_scan_qr_code"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:backgroundTint="#0D8712"
             android:fontFamily="@font/aldrich"
             android:text="Next"

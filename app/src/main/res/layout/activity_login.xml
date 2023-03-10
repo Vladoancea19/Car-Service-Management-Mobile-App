@@ -45,23 +45,25 @@
 
             <ToggleButton
                 android:id="@+id/clientToggleButton"
-                android:background="@drawable/togglebutton_selector"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/togglebutton_selector"
+                android:checked="true"
+                android:fontFamily="@font/alatsi"
                 android:textOff="Client"
                 android:textOn="Client"
-                android:checked="true"
-                android:textStyle="bold"
-                android:textSize="14sp"/>
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <ToggleButton
                 android:id="@+id/mechanicToggleButton"
                 android:background="@drawable/togglebutton_selector"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/alatsi"
                 android:textOff="Mechanic"
                 android:textOn="Mechanic"
-                android:textSize="14sp"/>
+                android:textSize="15sp"/>
 
         </LinearLayout>
 
@@ -76,6 +78,7 @@
             android:textColor="#808080">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phone_number_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -99,6 +102,7 @@
             android:textColor="#808080">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -110,17 +114,48 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-<!--        Forgor Password Button-->
-        <Button
-            android:layout_width="200dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginTop="5dp"
-            android:background="#00000000"
-            android:elevation="0dp"
-            android:fontFamily="@font/alatsi"
-            android:text="Forgot password?"
-            android:textColor="#000" />
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+
+<!--            Remember me Checkbox-->
+            <CheckBox
+                android:id="@+id/remember_me"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:background="#00000000"
+                android:elevation="0dp"
+                android:fontFamily="@font/alatsi"
+                android:text="Remember me"
+                android:textAlignment="textStart"
+                android:paddingLeft="5dp"
+                android:textColor="#000" />
+
+<!--            Spacer View-->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
+
+<!--            Forgot Password Button-->
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:background="#00000000"
+                android:elevation="0dp"
+                android:fontFamily="@font/alatsi"
+                android:textAllCaps="false"
+                android:text="Forgot password?"
+                android:textAlignment="textEnd"
+                android:letterSpacing="0"
+                android:textColor="#000" />
+
+        </LinearLayout>
 
 <!--        Login Button-->
         <Button
@@ -146,6 +181,7 @@
             android:fontFamily="@font/alatsi"
             android:text="Sign up for checkIt"
             android:textColor="#000"
+            android:letterSpacing="0"
             android:transitionName="other_option" />
 
 

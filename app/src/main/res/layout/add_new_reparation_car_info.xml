@@ -1,195 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:padding="20dp">
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/close_popup"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/close" />
-
-    <TextView
-        android:id="@+id/step_number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/close_popup"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:fontFamily="@font/aldrich"
-        android:text="Step: 2 of 3"
-        android:textColor="#000000"
-        android:textSize="18sp" />
+    android:scrollbars="vertical">
 
     <RelativeLayout
-        android:id="@+id/step_icons"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/step_number"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        android:padding="20dp">
 
-        <ImageView
-            android:id="@+id/client_icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="16.5dp"
-            android:background="@drawable/client" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/client_icon"
-            android:layout_alignParentLeft="true"
-            android:fontFamily="@font/aldrich"
-            android:text="Client info"
-            android:textColor="#000000"
-            android:textSize="14sp" />
-
-        <ImageView
-            android:id="@+id/car_icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="70dp"
-            android:layout_marginRight="70dp"
-            android:background="@drawable/car" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/close_popup"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/close" />
 
         <TextView
+            android:id="@+id/step_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/close_popup"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/aldrich"
+            android:text="Step: 2 of 3"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <RelativeLayout
+            android:id="@+id/step_icons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/step_number">
+
+            <ImageView
+                android:id="@+id/client_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="16.25dp"
+                android:background="@drawable/client" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/client_icon"
+                android:layout_alignParentLeft="true"
+                android:fontFamily="@font/aldrich"
+                android:text="Client info"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/car_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="70dp"
+                android:background="@drawable/car" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/car_icon"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/aldrich"
+                android:text="Car info"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+
+            <ImageView
+                android:id="@+id/tools_bw_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="16.25dp"
+                android:background="@drawable/tools_bw" />
+
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/car_icon"
-            android:layout_centerHorizontal="true"
+            android:layout_below="@id/step_icons"
+            android:layout_marginTop="25dp"
             android:fontFamily="@font/aldrich"
-            android:text="Car info"
+            android:text="Car informations"
             android:textColor="#000000"
-            android:textSize="14sp" />
+            android:textSize="20sp" />
 
+        <TextView
+            android:id="@+id/full_name_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/aldrich"
+            android:text="Car model"
+            android:textColor="#000000"
+            android:textSize="16sp" />
 
-        <ImageView
-            android:id="@+id/tools_bw_icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/full_name"
+            style="@style/LoginTextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/full_name_label">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/alatsi"
+                android:inputType="textPassword"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/phone_number_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/full_name"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/aldrich"
+            android:text="Plate number"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/phone_number"
+            style="@style/LoginTextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/phone_number_label">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/alatsi"
+                android:inputType="textPassword"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/next_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/phone_number"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="16.5dp"
-            android:background="@drawable/tools_bw" />
+            android:layout_marginTop="25dp"
+            android:backgroundTint="#0D8712"
+            android:fontFamily="@font/aldrich"
+            android:text="Next"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:icon="@drawable/next_arrow"
+            app:iconGravity="textEnd"
+            app:iconSize="15dp">
 
+        </com.google.android.material.button.MaterialButton>
 
     </RelativeLayout>
 
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/step_icons"
-        android:layout_marginTop="25dp"
-        android:fontFamily="@font/aldrich"
-        android:text="Car informations"
-        android:textColor="#000000"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/full_name_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/aldrich"
-        android:text="Car model"
-        android:textColor="#000000"
-        android:textSize="16sp" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/full_name"
-        style="@style/LoginTextInputLayoutStyle"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@+id/full_name_label">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/alatsi"
-            android:inputType="textPassword"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="#000"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/phone_number_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/full_name"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/aldrich"
-        android:text="Plate number"
-        android:textColor="#000000"
-        android:textSize="16sp" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/phone_number"
-        style="@style/LoginTextInputLayoutStyle"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@+id/phone_number_label">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/alatsi"
-            android:inputType="textPassword"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="#000"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/or_scan_qr_code"
-        android:layout_below="@+id/phone_number"
-        android:text="Or scan QR code"
-        android:textSize="12sp"
-        app:icon="@drawable/scan_qr"
-        app:iconGravity="textEnd"
-        app:iconSize="30dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/aldrich">
-
-    </com.google.android.material.button.MaterialButton>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/next_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/or_scan_qr_code"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#0D8712"
-        android:fontFamily="@font/aldrich"
-        android:text="Next"
-        android:textSize="13sp"
-        android:textStyle="bold"
-        app:icon="@drawable/next_arrow"
-        app:iconGravity="textEnd"
-        app:iconSize="15dp">
-
-    </com.google.android.material.button.MaterialButton>
-
-</RelativeLayout>
+</ScrollView>

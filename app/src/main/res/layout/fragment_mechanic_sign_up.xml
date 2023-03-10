@@ -149,6 +149,7 @@
             android:fontFamily="@font/alatsi"
             android:text="Already have an accout?"
             android:textColor="#000"
+            android:letterSpacing="0"
             android:transitionName="other_option"/>
 
     </LinearLayout>

@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     //TODO: Suprascriere utilizator existent
     //TODO: Optiune de remember me
     //TODO: Adaugare camp pentru autorizatie mecanic + verificare
-    //TODO: Telefon + parola identice pentru un client si un mecanic
     //TODO: Editare email din pagine de profil
 
     //Variables for SplashScreen page elements
