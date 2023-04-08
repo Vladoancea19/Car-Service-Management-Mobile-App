@@ -112,29 +112,29 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/full_name_label"
+            android:id="@+id/description_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/title"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/aldrich"
-            android:text="Car model"
+            android:text="Description"
             android:textColor="#000000"
             android:textSize="16sp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/full_name"
+            android:id="@+id/description"
             style="@style/LoginTextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/full_name_label">
+            android:layout_below="@+id/description_label">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/alatsi"
-                android:inputType="textPassword"
+                android:inputType="textMultiLine"
                 android:textColor="#000"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -142,29 +142,29 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/phone_number_label"
+            android:id="@+id/cost_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/full_name"
+            android:layout_below="@+id/description"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/aldrich"
-            android:text="Plate number"
+            android:text="Cost"
             android:textColor="#000000"
             android:textSize="16sp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/phone_number"
+            android:id="@+id/cost"
             style="@style/LoginTextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/phone_number_label">
+            android:layout_below="@+id/cost_label">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/alatsi"
-                android:inputType="textPassword"
+                android:inputType="number"
                 android:textColor="#000"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -172,18 +172,40 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/upload_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cost"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#0D8712"
+            android:fontFamily="@font/aldrich"
+            android:text="Or upload image"
+            android:textSize="12sp"
+            app:icon="@drawable/camera"
+            app:iconGravity="textEnd"
+            app:iconSize="25dp">
+
+        </com.google.android.material.button.MaterialButton>
+
+        <ImageView
+            android:id="@+id/testImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/submit" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/phone_number"
+            android:layout_below="@+id/upload_image"
             android:layout_alignParentRight="true"
             android:layout_marginTop="25dp"
             android:backgroundTint="#0D8712"
             android:fontFamily="@font/aldrich"
-            android:text="Next"
+            android:text="Submit"
             android:textSize="13sp"
             android:textStyle="bold"
-            app:icon="@drawable/next_arrow"
             app:iconGravity="textEnd"
             app:iconSize="15dp">
 

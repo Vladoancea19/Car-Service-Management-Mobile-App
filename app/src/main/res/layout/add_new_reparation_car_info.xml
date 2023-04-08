@@ -88,7 +88,6 @@
 
         </RelativeLayout>
 
-
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
@@ -101,7 +100,7 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/full_name_label"
+            android:id="@+id/car_model_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/title"
@@ -112,18 +111,18 @@
             android:textSize="16sp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/full_name"
+            android:id="@+id/car_model"
             style="@style/LoginTextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/full_name_label">
+            android:layout_below="@+id/car_model_label">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/alatsi"
-                android:inputType="textPassword"
+                android:inputType="text"
                 android:textColor="#000"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -131,10 +130,10 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/phone_number_label"
+            android:id="@+id/plate_number_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/full_name"
+            android:layout_below="@+id/car_model"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/aldrich"
             android:text="Plate number"
@@ -142,18 +141,108 @@
             android:textSize="16sp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/phone_number"
+            android:id="@+id/plate_number"
             style="@style/LoginTextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/phone_number_label">
+            android:layout_below="@+id/plate_number_label">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/alatsi"
-                android:inputType="textPassword"
+                android:inputType="text"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/manufacture_year_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/plate_number"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/aldrich"
+            android:text="Manufacture Year"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/manufacture_year"
+            style="@style/LoginTextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/manufacture_year_label">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/alatsi"
+                android:inputType="number"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/transmission_type_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/manufacture_year"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/aldrich"
+            android:text="Transmission type"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/transmission_type"
+            style="@style/LoginTextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/transmission_type_label">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/alatsi"
+                android:inputType="text"
+                android:textColor="#000"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/fuel_type_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/transmission_type"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/aldrich"
+            android:text="Fuel type"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/fuel_type"
+            style="@style/LoginTextInputLayoutStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fuel_type_label">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/alatsi"
+                android:inputType="text"
                 android:textColor="#000"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -164,7 +253,7 @@
             android:id="@+id/next_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/phone_number"
+            android:layout_below="@+id/fuel_type"
             android:layout_alignParentRight="true"
             android:layout_marginTop="25dp"
             android:backgroundTint="#0D8712"

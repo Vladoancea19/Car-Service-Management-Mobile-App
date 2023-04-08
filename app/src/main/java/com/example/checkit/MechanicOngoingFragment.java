@@ -1,6 +1,9 @@
 package com.example.checkit;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -8,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
@@ -16,7 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.checkit.DynamicRVInterface.LoadMore;
-import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,15 +32,18 @@ import com.journeyapps.barcodescanner.ScanOptions;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MechanicOngoingFragment extends Fragment {
 
     private AlertDialog dialog1, dialog2, dialog3;
     private Button scanQR;
-    private TextInputEditText phoneNumber, fullName;
+    private TextInputLayout phoneNumber, fullName, plateNumber, carModel, manufactureYear, transmissionType, fuelType;
     private ArrayList<StaticRvModel> staticItems = new ArrayList<>();
     private List<DynamicRVModel> dynamicItems = new ArrayList<>();
     private DynamicRVAdapter dynamicRVAdapter;
+    private static final int CAMERA_REQUEST = 1888;
+//    private ImageView imageView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -116,16 +123,44 @@ public class MechanicOngoingFragment extends Fragment {
         Button closePopup1 = popupView.findViewById(R.id.close_popup);
         scanQR = popupView.findViewById(R.id.or_scan_qr_code);
         Button next1 = popupView.findViewById(R.id.next_button);
-        phoneNumber = popupView.findViewById(R.id.phone_number_text);
-        fullName = popupView.findViewById(R.id.full_name_text);
+        phoneNumber = popupView.findViewById(R.id.phone_number);
+        fullName = popupView.findViewById(R.id.full_name);
 
         //Managing buttons actions
         scanQR.setOnClickListener(v -> scanQR());
         next1.setOnClickListener(v -> {
             //Colectare date
-            dialog1.dismiss();
-            carInfo();
+            boolean validPhone = false, validName = false;
+
+            String phoneNumberInput = Objects.requireNonNull(phoneNumber.getEditText().getText()).toString();
+
+            if(phoneNumberInput.isEmpty()) {
+                phoneNumber.setError("Please enter client's phone number");
+            }
+            else {
+                phoneNumber.setError(null);
+                validPhone = true;
+            }
+
+            String fullNameInput = Objects.requireNonNull(fullName.getEditText().getText()).toString();
+
+            if(fullNameInput.isEmpty()) {
+                fullName.setError("Please enter client's name");
+            }
+            else {
+                fullName.setError(null);
+                validName = true;
+            }
+
+            if(validName && validPhone) {
+                dialog1.dismiss();
+                carInfo();
+            }
         });
+
+        phoneNumber.setOnClickListener(v -> phoneNumber.setError(null));
+
+        fullName.setOnClickListener(v -> fullName.setError(null));
 
         //Create + show popup window
         dialogBuilder1.setView(popupView);
@@ -143,12 +178,71 @@ public class MechanicOngoingFragment extends Fragment {
         //Elements to variables
         Button closePopup2 = popupView.findViewById(R.id.close_popup);
         Button next2 = popupView.findViewById(R.id.next_button);
+        plateNumber = popupView.findViewById(R.id.plate_number);
+        carModel = popupView.findViewById(R.id.car_model);
+        manufactureYear = popupView.findViewById(R.id.manufacture_year);
+        transmissionType = popupView.findViewById(R.id.transmission_type);
+        fuelType = popupView.findViewById(R.id.fuel_type);
 
         //Managing buttons actions
         next2.setOnClickListener(v -> {
             //Colectare date
-            dialog2.dismiss();
-            carDamageInfo();
+            boolean validPlateNumber = false, validCarModel = false, validManufactureYear = false, validTransmissionType = false, validFuelType = false;
+
+            String plateNumberInput = Objects.requireNonNull(plateNumber.getEditText().getText()).toString();
+
+            if(plateNumberInput.isEmpty()) {
+                plateNumber.setError("Please enter car's plate number");
+            }
+            else {
+                plateNumber.setError(null);
+                validPlateNumber = true;
+            }
+
+            String carModelInput = Objects.requireNonNull(carModel.getEditText().getText()).toString();
+
+            if(carModelInput.isEmpty()) {
+                carModel.setError("Please enter car's model");
+            }
+            else {
+                carModel.setError(null);
+                validCarModel = true;
+            }
+
+            String manufactureYearInput = Objects.requireNonNull(manufactureYear.getEditText().getText()).toString();
+
+            if(manufactureYearInput.isEmpty()) {
+                manufactureYear.setError("Please enter car's manufacture year");
+            }
+            else {
+                manufactureYear.setError(null);
+                validManufactureYear = true;
+            }
+
+            String transmissionTypeInput = Objects.requireNonNull(transmissionType.getEditText().getText()).toString();
+
+            if(transmissionTypeInput.isEmpty()) {
+                transmissionType.setError("Please enter car's transmission type");
+            }
+            else {
+                transmissionType.setError(null);
+                validTransmissionType = true;
+            }
+
+            String fuelTypeInput = Objects.requireNonNull(fuelType.getEditText().getText()).toString();
+
+            if(fuelTypeInput.isEmpty()) {
+                fuelType.setError("Please enter car's fuel type");
+            }
+            else {
+                fuelType.setError(null);
+                validFuelType = true;
+            }
+
+            if(validCarModel && validPlateNumber && validManufactureYear && validTransmissionType && validFuelType) {
+                dialog2.dismiss();
+                carDamageInfo();
+            }
         });
 
         //Create + show popup window
@@ -166,11 +260,19 @@ public class MechanicOngoingFragment extends Fragment {
 
         //Elements to variables
         Button closePopup3 = popupView.findViewById(R.id.close_popup);
-        scanQR = popupView.findViewById(R.id.or_scan_qr_code);
+        Button uploadImage = popupView.findViewById(R.id.upload_image);
         Button submit = popupView.findViewById(R.id.submit);
+//        imageView = popupView.findViewById(R.id.testImage);
 
         //Managing buttons actions
         submit.setOnClickListener(v -> carInfo());
+        uploadImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, CAMERA_REQUEST);
+            }
+        });
 
         //Create + show popup window
         dialogBuilder3.setView(popupView);
@@ -179,6 +281,13 @@ public class MechanicOngoingFragment extends Fragment {
 
         //Close popup window
         closePopup3.setOnClickListener(v -> dialog3.dismiss());
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+//            imageView.setImageBitmap(photo);
+        }
     }
 
     private void scanQR() {
@@ -206,8 +315,8 @@ public class MechanicOngoingFragment extends Fragment {
 
                         String fullNameStored = firstNameStored + " " + lastNameStored;
 
-                        fullName.setText(fullNameStored);
-                        phoneNumber.setText(result.getContents());
+                        fullName.getEditText().setText(fullNameStored);
+                        phoneNumber.getEditText().setText(result.getContents());
                     }
                 }
 

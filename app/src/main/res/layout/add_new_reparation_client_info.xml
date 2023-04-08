@@ -156,12 +156,13 @@
             android:layout_below="@+id/phone_number"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
+            android:backgroundTint="#0D8712"
             android:fontFamily="@font/aldrich"
             android:text="Or scan QR code"
             android:textSize="12sp"
             app:icon="@drawable/scan_qr"
             app:iconGravity="textEnd"
-            app:iconSize="30dp">
+            app:iconSize="25dp">
 
         </com.google.android.material.button.MaterialButton>
 
