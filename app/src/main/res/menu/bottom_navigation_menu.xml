@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/bottom_navigation_menu_home"
+        android:title="Home"
+        android:icon="@drawable/gear"
+        app:cnb_backgroundColor="#79CDD8" />
+
+<!--    <item-->
+<!--        android:id="@+id/bottom_nav_history"-->
+<!--        android:title="History"-->
+<!--        android:icon="@drawable/list"-->
+<!--        app:cnb_backgroundColor="#E3D87B" />-->
+
+    <item
+        android:id="@+id/bottom_navigation_menu_profile"
+        android:title="Profile"
+        android:icon="@drawable/user"
+        app:cnb_backgroundColor="#3078B1">
+    </item>
+
+</menu>

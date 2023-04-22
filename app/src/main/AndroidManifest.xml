@@ -16,19 +16,19 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
-            android:name=".SignUp"
+            android:name=".SignUp.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".MechanicDashboard"
+            android:name=".Dashboard.DashboardActivityMechanic"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".Login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ClientDashboard"
+            android:name=".Dashboard.DashboardActivityClient"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashScreen.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

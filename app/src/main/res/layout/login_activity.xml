@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login.LoginActivity"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:orientation="vertical"
+    android:background="#FFFFFF" >
+
+    <ImageView
+        android:id="@+id/logo_image"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginBottom="-20dp"
+        android:src="@drawable/logo"
+        android:transitionName="logo_image_transition" />
+
+    <TextView
+        android:id="@+id/logo_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Log Into checkIt"
+        android:fontFamily="@font/bungee"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal" >
+
+            <ToggleButton
+                android:id="@+id/client_toggle_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/toggle_button"
+                android:checked="true"
+                android:fontFamily="@font/alatsi"
+                android:textOff="Client"
+                android:textOn="Client"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <ToggleButton
+                android:id="@+id/mechanic_toggle_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/toggle_button"
+                android:fontFamily="@font/alatsi"
+                android:textOff="Mechanic"
+                android:textOn="Mechanic"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/phone_number_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/LoginTextInputLayoutStyle"
+            android:hint="Phone number"
+            android:textColor="#808080"
+            android:transitionName="phone_number_transition" >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phone_number_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/alatsi"
+                android:inputType="number"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#000000" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/LoginTextInputLayoutStyle"
+            android:hint="Password"
+            app:passwordToggleEnabled="true"
+            android:textColor="#808080"
+            android:transitionName="password_transition" >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/alatsi"
+                android:inputType="textPassword"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#000000" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <CheckBox
+                android:id="@+id/remember_me_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:background="#00000000"
+                android:elevation="0dp"
+                android:text="Remember me"
+                android:fontFamily="@font/alatsi"
+                android:textAlignment="textStart"
+                android:paddingLeft="5dp"
+                android:textColor="#000000" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/forgot_password_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:background="@color/zxing_transparent"
+                android:elevation="0dp"
+                android:text="Forgot password?"
+                android:fontFamily="@font/alatsi"
+                android:textAllCaps="false"
+                android:textAlignment="textEnd"
+                android:letterSpacing="0"
+                android:textColor="#000000" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="#000000"
+            android:text="Login"
+            android:fontFamily="@font/bungee"
+            android:textColor="#fff"
+            android:transitionName="login_signup_transition" />
+
+        <Button
+            android:id="@+id/to_sign_up_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_margin="5dp"
+            android:background="@color/zxing_transparent"
+            android:elevation="0dp"
+            android:text="Sign up for checkIt"
+            android:fontFamily="@font/alatsi"
+            android:textColor="#000"
+            android:letterSpacing="0"
+            android:transitionName="other_option_transition" />
+
+    </LinearLayout>
+
+</LinearLayout>
