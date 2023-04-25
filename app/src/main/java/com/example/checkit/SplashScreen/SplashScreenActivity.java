@@ -46,7 +46,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         //Animation delay + transition to login page
         int SPLASH_SCREEN = 3000;
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(SplashScreenActivity.this, ChatActivity.class); // TODO: LoginActivity
+            Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class); // TODO: LoginActivity
 
             Pair[] pairs = new Pair[2];
             pairs[0] = new Pair<View, String>(logoImage, "logo_image_transition");
