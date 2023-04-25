@@ -16,7 +16,7 @@ import com.example.checkit.Models.CarDamageInfoModel;
 import com.example.checkit.Models.MechanicDynamicRvModel;
 import com.example.checkit.Models.MechanicStaticRvModel;
 import com.example.checkit.R;
-import com.example.checkit.RecyclerView.Interface.Update;
+import com.example.checkit.RecyclerView.Interface.RvUpdate;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,15 +30,15 @@ public class RvStaticAdapterMechanic extends RecyclerView.Adapter<RvStaticAdapte
     private ArrayList<MechanicStaticRvModel> items;
     private String mechanicPhoneNumber;
     int row_index = -1;
-    Update update;
+    RvUpdate rvUpdate;
     Activity activity;
     boolean check = true, select = true;
 
-    public RvStaticAdapterMechanic(ArrayList<MechanicStaticRvModel> items, String mechanicPhoneNumber, Activity activity, Update update) {
+    public RvStaticAdapterMechanic(ArrayList<MechanicStaticRvModel> items, String mechanicPhoneNumber, Activity activity, RvUpdate rvUpdate) {
         this.items = items;
         this.mechanicPhoneNumber = mechanicPhoneNumber;
         this.activity = activity;
-        this.update = update;
+        this.rvUpdate = rvUpdate;
     }
 
     @NonNull
@@ -98,7 +98,7 @@ public class RvStaticAdapterMechanic extends RecyclerView.Adapter<RvStaticAdapte
                             progress = (int) (procent * 100);
 
                             dynamicItems.add(new MechanicDynamicRvModel(progress, progress + "%", plateNumber, carModel, uniqueID));
-                            update.callback(position, dynamicItems);
+                            rvUpdate.callback(position, dynamicItems);
                         }
                     }
                 }
@@ -163,10 +163,10 @@ public class RvStaticAdapterMechanic extends RecyclerView.Adapter<RvStaticAdapte
                                     progress = (int) (procent * 100);
 
                                     dynamicItems.add(new MechanicDynamicRvModel(progress, progress + "%", plateNumber, carModel, uniqueID));
-                                    update.callback(position, dynamicItems);
+                                    rvUpdate.callback(position, dynamicItems);
                                 }
                             }
-                            update.callback(position, dynamicItems);
+                            rvUpdate.callback(position, dynamicItems);
                         }
 
                         @Override
@@ -208,10 +208,10 @@ public class RvStaticAdapterMechanic extends RecyclerView.Adapter<RvStaticAdapte
                                     String carModel = reparationSnapshot.child("carInfo").child("carModel").getValue(String.class);
 
                                     dynamicItems.add(new MechanicDynamicRvModel(plateNumber, carModel, uniqueID));
-                                    update.callback(position, dynamicItems);
+                                    rvUpdate.callback(position, dynamicItems);
                                 }
                             }
-                            update.callback(position, dynamicItems);
+                            rvUpdate.callback(position, dynamicItems);
                         }
 
                         @Override
@@ -253,10 +253,10 @@ public class RvStaticAdapterMechanic extends RecyclerView.Adapter<RvStaticAdapte
                                     String carModel = reparationSnapshot.child("carInfo").child("carModel").getValue(String.class);
 
                                     dynamicItems.add(new MechanicDynamicRvModel(plateNumber, carModel, uniqueID));
-                                    update.callback(position, dynamicItems);
+                                    rvUpdate.callback(position, dynamicItems);
                                 }
                             }
-                            update.callback(position, dynamicItems);
+                            rvUpdate.callback(position, dynamicItems);
                         }
 
                         @Override
@@ -285,10 +285,10 @@ public class RvStaticAdapterMechanic extends RecyclerView.Adapter<RvStaticAdapte
                                     String carModel = reparationSnapshot.child("carInfo").child("carModel").getValue(String.class);
 
                                     dynamicItems.add(new MechanicDynamicRvModel(plateNumber, carModel, uniqueID));
-                                    update.callback(position, dynamicItems);
+                                    rvUpdate.callback(position, dynamicItems);
                                 }
                             }
-                            update.callback(position, dynamicItems);
+                            rvUpdate.callback(position, dynamicItems);
                         }
 
                         @Override

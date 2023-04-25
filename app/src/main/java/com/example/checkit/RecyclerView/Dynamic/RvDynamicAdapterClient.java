@@ -53,7 +53,7 @@ public class RvDynamicAdapterClient extends RecyclerView.Adapter<RvDynamicAdapte
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_dynamic_item_in_progress, parent, false);
             return new RvDynamicViewHolderClient(view);
         }
-        else if(pos == 2){
+        else if(pos == 2) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_dynamic_item_pending_client, parent, false);
             return new RvDynamicViewHolderClient(view);
         }
@@ -73,6 +73,7 @@ public class RvDynamicAdapterClient extends RecyclerView.Adapter<RvDynamicAdapte
         }
         if(pos == 2) {
             MaterialButton acceptButton = view.findViewById(R.id.accept_button);
+            MaterialButton declineButton = view.findViewById(R.id.decline_button);
 
             acceptButton.setOnClickListener(v -> {
                 DatabaseReference clientReference = FirebaseDatabase.getInstance("https://checkit-cd40f-default-rtdb.europe-west1.firebasedatabase.app/").getReference("reparations");
@@ -86,6 +87,29 @@ public class RvDynamicAdapterClient extends RecyclerView.Adapter<RvDynamicAdapte
 
                             if(uid.equals(uniqueID)) {
                                 reparationSnapshot.child("state").getRef().setValue("inprogress");
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            });
+
+            declineButton.setOnClickListener(v -> {
+                DatabaseReference clientReference = FirebaseDatabase.getInstance("https://checkit-cd40f-default-rtdb.europe-west1.firebasedatabase.app/").getReference("reparations");
+
+                clientReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot reparationSnapshot : snapshot.getChildren()) {
+                            String uniqueID = reparationSnapshot.child("uniqueID").getValue(String.class);
+                            String uid = items.getUniqueID();
+
+                            if(uid.equals(uniqueID)) {
+                                reparationSnapshot.child("state").getRef().setValue("rejected");
                             }
                         }
                     }

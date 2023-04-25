@@ -15,11 +15,11 @@ import com.example.checkit.RecyclerView.Static.RvStaticAdapterClient;
 import com.example.checkit.Models.MechanicDynamicRvModel;
 import com.example.checkit.R;
 import com.example.checkit.Models.MechanicStaticRvModel;
-import com.example.checkit.RecyclerView.Interface.Update;
+import com.example.checkit.RecyclerView.Interface.RvUpdate;
 
 import java.util.ArrayList;
 
-public class HomeFragmentClient extends Fragment implements Update {
+public class HomeFragmentClient extends Fragment implements RvUpdate {
 
     private RecyclerView dynamicRecyclerView;
     private ArrayList<MechanicStaticRvModel> staticItems = new ArrayList<>();

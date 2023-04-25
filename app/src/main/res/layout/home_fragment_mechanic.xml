@@ -29,7 +29,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="10dp"
         android:background="@drawable/search_box"
         android:singleLine="true"
         android:elevation="4dp"
@@ -40,12 +40,12 @@
         android:paddingBottom="10dp"
         android:paddingRight="50dp"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/add_new_repair_button"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="@+id/scroll_view_mechanic"
         app:layout_constraintTop_toBottomOf="@+id/title_mechanic"
         app:layout_constraintVertical_bias="0"
-        app:layout_constraintWidth_percent=".92" />
+        app:layout_constraintWidth_percent=".685" />
 
     <ImageView
         android:layout_width="30dp"
@@ -58,11 +58,32 @@
         android:translationZ="10dp"
         android:layout_marginRight="10dp"/>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/add_new_repair_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/search_bar_mechanic"
+        app:layout_constraintBottom_toTopOf="@id/scroll_view_mechanic"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="6dp"
+        android:padding="0dp"
+        app:cornerRadius="20dp"
+        app:icon="@drawable/plus_to_repair"
+        android:backgroundTint="#073F6C"
+        app:iconSize="9dp"
+        app:iconGravity="textStart"
+        android:text="Add new"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:letterSpacing="0.01"/>
+
     <ScrollView
         android:id="@+id/scroll_view_mechanic"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="132dp"
+        android:layout_marginTop="142dp"
         android:scrollbars="none"
         app:layout_constraintTop_toBottomOf="@+id/search_bar_mechanic"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -80,7 +101,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
+
                 android:layout_marginRight="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

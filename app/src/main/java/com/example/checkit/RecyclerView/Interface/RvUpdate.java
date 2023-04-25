@@ -4,6 +4,6 @@ import com.example.checkit.Models.MechanicDynamicRvModel;
 
 import java.util.ArrayList;
 
-public interface Update {
+public interface RvUpdate {
     void callback(int position, ArrayList<MechanicDynamicRvModel> items);
 }

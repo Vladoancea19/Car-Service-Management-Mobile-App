@@ -16,7 +16,7 @@ import com.example.checkit.Models.CarDamageInfoModel;
 import com.example.checkit.Models.MechanicDynamicRvModel;
 import com.example.checkit.Models.MechanicStaticRvModel;
 import com.example.checkit.R;
-import com.example.checkit.RecyclerView.Interface.Update;
+import com.example.checkit.RecyclerView.Interface.RvUpdate;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,15 +30,15 @@ public class RvStaticAdapterClient extends RecyclerView.Adapter<RvStaticAdapterC
     private ArrayList<MechanicStaticRvModel> items;
     private String clientPhoneNumber;
     int row_index = -1;
-    Update update;
+    RvUpdate rvUpdate;
     Activity activity;
     boolean check = true, select = true;
 
-    public RvStaticAdapterClient(ArrayList<MechanicStaticRvModel> items, String clientPhoneNumber, Activity activity, Update update) {
+    public RvStaticAdapterClient(ArrayList<MechanicStaticRvModel> items, String clientPhoneNumber, Activity activity, RvUpdate rvUpdate) {
         this.items = items;
         this.clientPhoneNumber = clientPhoneNumber;
         this.activity = activity;
-        this.update = update;
+        this.rvUpdate = rvUpdate;
     }
 
     @NonNull
@@ -98,7 +98,7 @@ public class RvStaticAdapterClient extends RecyclerView.Adapter<RvStaticAdapterC
                             progress = (int) (procent * 100);
 
                             dynamicItems.add(new MechanicDynamicRvModel(progress, progress + "%", plateNumber, carModel, uniqueID));
-                            update.callback(position, dynamicItems);
+                            rvUpdate.callback(position, dynamicItems);
                         }
                     }
                 }
@@ -161,10 +161,10 @@ public class RvStaticAdapterClient extends RecyclerView.Adapter<RvStaticAdapterC
                                 progress = (int) (procent * 100);
 
                                 dynamicItems.add(new MechanicDynamicRvModel(progress, progress + "%", plateNumber, carModel, uniqueID));
-                                update.callback(position, dynamicItems);
+                                rvUpdate.callback(position, dynamicItems);
                             }
                         }
-                        update.callback(position, dynamicItems);
+                        rvUpdate.callback(position, dynamicItems);
                     }
 
                     @Override
@@ -206,10 +206,10 @@ public class RvStaticAdapterClient extends RecyclerView.Adapter<RvStaticAdapterC
                                 String carModel = reparationSnapshot.child("carInfo").child("carModel").getValue(String.class);
 
                                 dynamicItems.add(new MechanicDynamicRvModel(plateNumber, carModel, uniqueID));
-                                update.callback(position, dynamicItems);
+                                rvUpdate.callback(position, dynamicItems);
                             }
                         }
-                        update.callback(position, dynamicItems);
+                        rvUpdate.callback(position, dynamicItems);
                     }
 
                     @Override
@@ -251,10 +251,10 @@ public class RvStaticAdapterClient extends RecyclerView.Adapter<RvStaticAdapterC
                                 String carModel = reparationSnapshot.child("carInfo").child("carModel").getValue(String.class);
 
                                 dynamicItems.add(new MechanicDynamicRvModel(plateNumber, carModel, uniqueID));
-                                update.callback(position, dynamicItems);
+                                rvUpdate.callback(position, dynamicItems);
                             }
                         }
-                        update.callback(position, dynamicItems);
+                        rvUpdate.callback(position, dynamicItems);
                     }
 
                     @Override
@@ -267,7 +267,7 @@ public class RvStaticAdapterClient extends RecyclerView.Adapter<RvStaticAdapterC
 //                    dynamicItems.add(new MechanicDynamicRvModel(50, 50+"%", "B 23 MYE", "Dacia Logan", "dummy"));
 //                    dynamicItems.add(new MechanicDynamicRvModel(50, 50+"%", "B 23 MYE", "Golf IV", "dummy"));
 //                    dynamicItems.add(new MechanicDynamicRvModel(50, 50+"%", "B 23 MYE", "Buggati Veiron", "dummy"));
-//                    update.callback(position, dynamicItems);
+//                    rvUpdate.callback(position, dynamicItems);
             }
             else if (position == 3) {
                 DatabaseReference clientReference = FirebaseDatabase.getInstance("https://checkit-cd40f-default-rtdb.europe-west1.firebasedatabase.app/").getReference("reparations");
@@ -289,10 +289,10 @@ public class RvStaticAdapterClient extends RecyclerView.Adapter<RvStaticAdapterC
                                 String carModel = reparationSnapshot.child("carInfo").child("carModel").getValue(String.class);
 
                                 dynamicItems.add(new MechanicDynamicRvModel(plateNumber, carModel, uniqueID));
-                                update.callback(position, dynamicItems);
+                                rvUpdate.callback(position, dynamicItems);
                             }
                         }
-                        update.callback(position, dynamicItems);
+                        rvUpdate.callback(position, dynamicItems);
                     }
 
                     @Override

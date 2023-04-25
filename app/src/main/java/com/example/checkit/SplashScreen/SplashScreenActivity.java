@@ -15,6 +15,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.checkit.Chat.ChatActivity;
 import com.example.checkit.Login.LoginActivity;
 import com.example.checkit.R;
 
@@ -45,7 +46,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         //Animation delay + transition to login page
         int SPLASH_SCREEN = 3000;
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
+            Intent intent = new Intent(SplashScreenActivity.this, ChatActivity.class); // TODO: LoginActivity
 
             Pair[] pairs = new Pair[2];
             pairs[0] = new Pair<View, String>(logoImage, "logo_image_transition");

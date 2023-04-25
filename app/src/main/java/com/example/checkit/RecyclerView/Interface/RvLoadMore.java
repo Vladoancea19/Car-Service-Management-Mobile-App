@@ -1,5 +1,5 @@
 package com.example.checkit.RecyclerView.Interface;
 
-public interface LoadMore {
+public interface RvLoadMore {
     void onLoadMore();
 }

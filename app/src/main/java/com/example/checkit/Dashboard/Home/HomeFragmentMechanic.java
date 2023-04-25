@@ -29,7 +29,7 @@ import com.example.checkit.Models.MechanicStaticRvModel;
 import com.example.checkit.Models.RepairModel;
 import com.example.checkit.R;
 import com.example.checkit.RecyclerView.Static.RvStaticAdapterMechanic;
-import com.example.checkit.RecyclerView.Interface.Update;
+import com.example.checkit.RecyclerView.Interface.RvUpdate;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -44,7 +44,7 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.Objects;
 
-public class HomeFragmentMechanic extends Fragment implements Update {
+public class HomeFragmentMechanic extends Fragment implements RvUpdate {
 
     private AlertDialog dialog1, dialog2, dialog3;
     private TextInputLayout phoneNumberContainer, fullNameContainer, plateNumberContainer, carModelContainer, manufactureYearContainer, transmissionTypeContainer, fuelTypeContainer;
@@ -66,13 +66,13 @@ public class HomeFragmentMechanic extends Fragment implements Update {
         View view = inflater.inflate(R.layout.home_fragment_mechanic, container, false);
 
         //Elements to variables
-//        ImageButton addNew = view.findViewById(R.id.add_new);
+        MaterialButton addNewRepairButton = view.findViewById(R.id.add_new_repair_button);
 
         //Managing buttons actions
-//        addNew.setOnClickListener(v -> {
-//            carDamageInfoList = new ArrayList<>();
-//            clientInfo();
-//        });
+        addNewRepairButton.setOnClickListener(v -> {
+            carDamageInfoList = new ArrayList<>();
+            clientInfo();
+        });
 
         staticItems.add(new MechanicStaticRvModel(R.drawable.gear_gradient, "In progress"));
         staticItems.add(new MechanicStaticRvModel(R.drawable.check_mark, "Done"));
@@ -267,34 +267,30 @@ public class HomeFragmentMechanic extends Fragment implements Update {
             private String getFormattedMonth(int month) {
                 String formattedMonth;
 
-                switch (month) {
-                    case 1:
-                        formattedMonth = "JAN";
-                    case 2:
-                        formattedMonth = "FEB";
-                    case 3:
-                        formattedMonth = "MAR";
-                    case 4:
-                        formattedMonth = "APR";
-                    case 5:
-                        formattedMonth = "MAY";
-                    case 6:
-                        formattedMonth = "JUN";
-                    case 7:
-                        formattedMonth = "JUL";
-                    case 8:
-                        formattedMonth = "AUG";
-                    case 9:
-                        formattedMonth = "SEP";
-                    case 10:
-                        formattedMonth = "OCT";
-                    case 11:
-                        formattedMonth = "NOV";
-                    case 12:
-                        formattedMonth = "DEC";
-                    default:
-                        formattedMonth = "APR";
-                }
+                if(month ==1)
+                    formattedMonth = "JAN";
+                else if(month == 2)
+                    formattedMonth = "FEB";
+                else if(month == 3)
+                    formattedMonth = "MAR";
+                else if(month == 4)
+                    formattedMonth = "APR";
+                else if(month == 5)
+                    formattedMonth = "MAY";
+                else if(month == 6)
+                    formattedMonth = "JUN";
+                else if(month == 7)
+                    formattedMonth = "JUL";
+                else if(month == 8)
+                    formattedMonth = "AUG";
+                else if(month == 9)
+                    formattedMonth = "SEP";
+                else if(month == 10)
+                    formattedMonth = "OCT";
+                else if(month == 11)
+                    formattedMonth = "NOV";
+                else
+                    formattedMonth = "DEC";
 
                 return formattedMonth;
             }
