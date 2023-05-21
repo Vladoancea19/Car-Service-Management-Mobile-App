@@ -1,43 +1,66 @@
 package com.example.checkit.Dashboard.Home;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.checkit.CaptureAct;
-import com.example.checkit.RecyclerView.Dynamic.RvDynamicAdapterMechanic;
 import com.example.checkit.Models.CarDamageInfoModel;
 import com.example.checkit.Models.CarInfoModel;
 import com.example.checkit.Models.MechanicDynamicRvModel;
 import com.example.checkit.Models.MechanicStaticRvModel;
 import com.example.checkit.Models.RepairModel;
 import com.example.checkit.R;
-import com.example.checkit.RecyclerView.Static.RvStaticAdapterMechanic;
+import com.example.checkit.RecyclerView.Dynamic.RvDynamicAdapterMechanic;
 import com.example.checkit.RecyclerView.Interface.RvUpdate;
+import com.example.checkit.RecyclerView.Static.RvStaticAdapterMechanic;
+import com.example.checkit.ml.CarDamageDetection;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 
+import org.tensorflow.lite.DataType;
+import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
+
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -47,17 +70,18 @@ import java.util.Objects;
 public class HomeFragmentMechanic extends Fragment implements RvUpdate {
 
     private AlertDialog dialog1, dialog2, dialog3;
-    private TextInputLayout phoneNumberContainer, fullNameContainer, plateNumberContainer, carModelContainer, manufactureYearContainer, transmissionTypeContainer, fuelTypeContainer;
+    private TextInputLayout phoneNumberContainer, plateNumberContainer, carModelContainer, manufactureYearContainer, transmissionTypeContainer, fuelTypeContainer;
     private RecyclerView dynamicRecyclerView;
     private ArrayList<MechanicStaticRvModel> staticItems = new ArrayList<>();
     private RvDynamicAdapterMechanic rvDynamicAdapterMechanic;
     private static final int CAMERA_REQUEST = 1888;
     private String mechanicPhoneNumber;
-    private String clientPhoneNumber;
+    private String clientPhoneNumber, clientFullName;
     private CarInfoModel carInfo;
     private CarDamageInfoModel carDamageInfo;
     private ArrayList<CarDamageInfoModel> carDamageInfoList;
     private RepairModel repairs;
+    private TextInputEditText descriptionText, costText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -95,55 +119,60 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
         return view;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void clientInfo() {
         AlertDialog.Builder dialogBuilder1 = new AlertDialog.Builder(getActivity());
         final View popupView = getLayoutInflater().inflate(R.layout.add_new_repair_client_info, null);
 
         //Elements to variables
         Button closePopupButton1 = popupView.findViewById(R.id.close_popup_button_1);
-        Button scanQRButton = popupView.findViewById(R.id.scan_qr_button);
         Button nextButton1 = popupView.findViewById(R.id.next_button_1);
-        fullNameContainer = popupView.findViewById(R.id.full_name_container);
         phoneNumberContainer = popupView.findViewById(R.id.phone_number_container);
 
         //Managing buttons actions
-        scanQRButton.setOnClickListener(v -> scanQR());
         nextButton1.setOnClickListener(v -> {
-            boolean validPhone = false, validName = false;
-
             String phoneNumberInput = Objects.requireNonNull(Objects.requireNonNull(phoneNumberContainer.getEditText()).getText()).toString();
 
             if(phoneNumberInput.isEmpty()) {
                 phoneNumberContainer.setError("Please enter client's phone number");
             }
             else {
-                phoneNumberContainer.setError(null);
-                validPhone = true;
-            }
+                DatabaseReference clientReference = FirebaseDatabase.getInstance("https://checkit-cd40f-default-rtdb.europe-west1.firebasedatabase.app/").getReference("client_users");
+                Query checkClientUser = clientReference.orderByChild("phoneNumber").equalTo(phoneNumberInput);
 
-            String fullNameInput = Objects.requireNonNull(Objects.requireNonNull(fullNameContainer.getEditText()).getText()).toString();
+                checkClientUser.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()) {
+                            phoneNumberContainer.setError(null);
+                            phoneNumberContainer.setErrorEnabled(false);
 
-            if(fullNameInput.isEmpty()) {
-                fullNameContainer.setError("Please enter client's name");
-            }
-            else {
-                fullNameContainer.setError(null);
-                validName = true;
-            }
+                            String firstNameStored = snapshot.child(phoneNumberInput).child("firstName").getValue(String.class);
+                            String lastNameStored = snapshot.child(phoneNumberInput).child("lastName").getValue(String.class);
+                            String fullNameStored = firstNameStored + " " + lastNameStored;
 
-            if(validName && validPhone) {
-                Intent intent = requireActivity().getIntent();
-                mechanicPhoneNumber = intent.getStringExtra("phone_number");
-                clientPhoneNumber = phoneNumberInput;
+                            Intent intent = requireActivity().getIntent();
+                            mechanicPhoneNumber = intent.getStringExtra("phoneNumber");
+                            clientPhoneNumber = phoneNumberInput;
+                            clientFullName = fullNameStored;
 
-                dialog1.dismiss();
-                carInfo();
+                            dialog1.dismiss();
+                            carInfo();
+                        }
+                        else {
+                            phoneNumberContainer.setError("Incorrect phone number");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
         });
 
         phoneNumberContainer.setOnClickListener(v -> phoneNumberContainer.setError(null));
-
-        fullNameContainer.setOnClickListener(v -> fullNameContainer.setError(null));
 
         //Create + show popup window
         dialogBuilder1.setView(popupView);
@@ -160,6 +189,7 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
 
         //Elements to variables
         Button closePopupButton2 = popupView.findViewById(R.id.close_popup_button_2);
+        Button scanQRButton = popupView.findViewById(R.id.scan_qr_button);
         Button nextButton2 = popupView.findViewById(R.id.next_button_2);
         plateNumberContainer = popupView.findViewById(R.id.plate_number_container);
         carModelContainer = popupView.findViewById(R.id.car_model_container);
@@ -168,6 +198,7 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
         fuelTypeContainer = popupView.findViewById(R.id.fuel_type_container);
 
         //Managing buttons actions
+        scanQRButton.setOnClickListener(v -> scanQR());
         nextButton2.setOnClickListener(v -> {
             boolean validPlateNumber = false, validCarModel = false, validManufactureYear = false, validTransmissionType = false, validFuelType = false;
 
@@ -244,13 +275,14 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
 
         //Elements to variables
         Button closePopupButton3 = popupView.findViewById(R.id.close_popup_button_3);
+        Button captureImageButton = popupView.findViewById(R.id.capture_image_button);
         Button uploadImageButton = popupView.findViewById(R.id.upload_image_button);
         Button submitButton = popupView.findViewById(R.id.submit_button);
         Button estimatedTimeButton = popupView.findViewById(R.id.estimated_time_button);
         MaterialButton addRepairButton = popupView.findViewById(R.id.add_repair_button);
         MaterialButton removeRepairButton = popupView.findViewById(R.id.remove_repair_button);
-        TextInputEditText descriptionText = popupView.findViewById(R.id.description_text);
-        TextInputEditText costText = popupView.findViewById(R.id.cost_text);
+        descriptionText = popupView.findViewById(R.id.description_text);
+        costText = popupView.findViewById(R.id.cost_text);
         TextInputLayout descriptionContainer = popupView.findViewById(R.id.description_container);
         TextInputLayout costContainer = popupView.findViewById(R.id.cost_container);
 
@@ -299,9 +331,24 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
         int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH), month = Calendar.getInstance().get(Calendar.MONTH), year = Calendar.getInstance().get(Calendar.YEAR), style = AlertDialog.THEME_HOLO_DARK;
         datePickerDialog = new DatePickerDialog(this.getContext(), style, dateSetListener, year, month, day);
 
+        captureImageButton.setOnClickListener(v -> {
+            if(ContextCompat.checkSelfPermission(this.getContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, CAMERA_REQUEST);
+            }
+            else {
+                requestPermissions(new String[]{Manifest.permission.CAMERA}, 100);
+            }
+        });
+
         uploadImageButton.setOnClickListener(v -> {
-            Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(cameraIntent, CAMERA_REQUEST);
+            if(ContextCompat.checkSelfPermission(this.getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                Intent cameraIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(cameraIntent, 1);
+            }
+            else {
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 100);
+            }
         });
 
         descriptionText.addTextChangedListener(new TextWatcher() {
@@ -369,7 +416,7 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
             }
 
             if(Objects.requireNonNull(costText.getText()).toString().isEmpty()) {
-                costContainer.setError("Please enter car's model");
+                costContainer.setError("Please enter repair cost");
             }
             else {
                 costContainer.setError(null);
@@ -383,6 +430,8 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
 
                 descriptionText.getText().clear();
                 costText.getText().clear();
+
+                Toast.makeText(getActivity(), "You successfully added the repair!", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -394,11 +443,17 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
             FirebaseDatabase database = FirebaseDatabase.getInstance("https://checkit-cd40f-default-rtdb.europe-west1.firebasedatabase.app/");
             DatabaseReference reference = database.getReference("reparations");
 
-            repairs = new RepairModel(clientPhoneNumber, mechanicPhoneNumber, carInfo, carDamageInfoList, estimatedTimeButton.getText().toString(), "pending");
-            DatabaseReference newReference = reference.push();
-            newReference.setValue(repairs);
+            if(!carDamageInfoList.isEmpty()) {
+                DatabaseReference newReference = reference.push();
+                String uniqueID = reference.push().getKey();
+                repairs = new RepairModel(clientPhoneNumber, mechanicPhoneNumber, carInfo, carDamageInfoList, estimatedTimeButton.getText().toString(), "pending", uniqueID);
+                newReference.setValue(repairs);
 
-            dialog3.dismiss();
+                dialog3.dismiss();
+            }
+            else {
+                Toast.makeText(getActivity(), "YOU NEED TO ADD AT LEAST ONE REPAIR!", Toast.LENGTH_LONG).show();
+            }
         });
 
         //Create + show popup window
@@ -410,10 +465,78 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
         closePopupButton3.setOnClickListener(v -> dialog3.dismiss());
     }
 
+    public void classifyImage(Bitmap image) {
+        try {
+            CarDamageDetection cddModel = CarDamageDetection.newInstance(getActivity().getApplicationContext());
+
+            // Creates inputs for reference.
+            TensorBuffer inputFeature0 = TensorBuffer.createFixedSize(new int[]{1, 224, 224, 3}, DataType.FLOAT32);
+            ByteBuffer byteBuffer = ByteBuffer.allocateDirect(4 * 224 * 224 * 3);
+            byteBuffer.order(ByteOrder.nativeOrder());
+
+            int[] intValues = new int[224 * 224];
+            image.getPixels(intValues, 0, image.getWidth(), 0, 0, image.getWidth(), image.getHeight());
+            int pixel = 0;
+
+            for (int i = 0; i < 224; i++) {
+                for (int j = 0; j < 224; j++) {
+                    int val = intValues[pixel++];
+
+                    byteBuffer.putFloat(((val >> 16) & 0xFF) * (1.f / 255));
+                    byteBuffer.putFloat(((val >> 8) & 0xFF) * (1.f / 255));
+                    byteBuffer.putFloat((val & 0xFF) * (1.f / 255));
+                }
+            }
+
+            inputFeature0.loadBuffer(byteBuffer);
+
+            // Runs model inference and gets result.
+            CarDamageDetection.Outputs outputs = cddModel.process(inputFeature0);
+            TensorBuffer outputFeature0 = outputs.getOutputFeature0AsTensorBuffer();
+
+            float[] probabilityArray = outputFeature0.getFloatArray();
+            float maxProbability = 0;
+            int maxProbabilityPosition = 0;
+
+            for (int i = 0; i < probabilityArray.length; i++) {
+                if (probabilityArray[i] > maxProbability) {
+                    maxProbability = probabilityArray[i];
+                    maxProbabilityPosition = i;
+                }
+            }
+
+            String[] classes = {"bumper dent", "bumper scratch", "door dent", "door scratch", "broken glass", "broken head lamp", "broken tail lamp"};
+            String[] costs = {"100", "200", "300", "400", "500", "600", "700"};
+            descriptionText.setText(classes[maxProbabilityPosition]);
+            costText.setText(costs[maxProbabilityPosition]);
+
+            // Releases model resources if no longer used.
+            cddModel.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
-            // TODO: deploy car damage segmentation model
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == CAMERA_REQUEST) {
+                Bitmap image = (Bitmap) data.getExtras().get("data");
+
+                image = Bitmap.createScaledBitmap(image, 224, 224, false);
+                classifyImage(image);
+            }
+            else {
+                Uri uri = data.getData();
+                Bitmap image = null;
+                try {
+                    image = MediaStore.Images.Media.getBitmap(this.getActivity().getContentResolver(), uri);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                image = Bitmap.createScaledBitmap(image, 224, 224, false);
+                classifyImage(image);
+            }
         }
     }
 

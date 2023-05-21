@@ -215,6 +215,7 @@
             android:paddingRight="30dp">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/log_out_button"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginLeft="10dp"

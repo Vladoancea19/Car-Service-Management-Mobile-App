@@ -3,6 +3,7 @@ package com.example.checkit.Login;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -15,6 +16,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
@@ -38,7 +40,7 @@ import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private static final String FILE_PHONE_NUMBER = "rememberMe";
+    private static final String REMEMBER_ME = "rememberMe", PHONE_NUMBER = "phoneNumber", PASSWORD = "password", CLIENT_ACCOUNT = "clientAccount", MECHANIC_ACCOUNT = "mechanicAccount";
 
     ImageView logoImage;
     ToggleButton clientToggleButton, mechanicToggleButton;
@@ -155,6 +157,18 @@ public class LoginActivity extends AppCompatActivity {
                             passwordContainer.setError(null);
                             passwordContainer.setErrorEnabled(false);
 
+                            if(rememberMeButton.isChecked()) {
+                                SharedPreferences sharedPreferences = getSharedPreferences(REMEMBER_ME, MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                                editor.putString(PHONE_NUMBER, phoneNumberInput);
+                                editor.putString(PASSWORD, passwordInput);
+                                editor.putBoolean(CLIENT_ACCOUNT, true);
+                                editor.putBoolean(MECHANIC_ACCOUNT, false);
+
+                                editor.apply();
+                            }
+
                             String firstNameStored = snapshot.child(phoneNumberInput).child("firstName").getValue(String.class);
                             String lastNameStored = snapshot.child(phoneNumberInput).child("lastName").getValue(String.class);
                             String fullNameStored = firstNameStored + " " + lastNameStored;
@@ -205,6 +219,18 @@ public class LoginActivity extends AppCompatActivity {
                         if(passwordStored.equals(passwordInput)) {
                             passwordContainer.setError(null);
                             passwordContainer.setErrorEnabled(false);
+
+                            if(rememberMeButton.isChecked()) {
+                                SharedPreferences sharedPreferences = getSharedPreferences(REMEMBER_ME, MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                                editor.putString(PHONE_NUMBER, phoneNumberInput);
+                                editor.putString(PASSWORD, passwordInput);
+                                editor.putBoolean(CLIENT_ACCOUNT, false);
+                                editor.putBoolean(MECHANIC_ACCOUNT, true);
+
+                                editor.apply();
+                            }
 
                             String firstNameStored = snapshot.child(phoneNumberInput).child("firstName").getValue(String.class);
                             String lastNameStored = snapshot.child(phoneNumberInput).child("lastName").getValue(String.class);

@@ -1,7 +1,12 @@
 package com.example.checkit.Dashboard;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.graphics.Rect;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -9,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.example.checkit.Dashboard.Home.HomeFragmentClient;
 import com.example.checkit.Dashboard.Profile.ProfileFragmentClient;
 import com.example.checkit.R;
+import com.google.android.material.textfield.TextInputEditText;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 public class DashboardActivityClient extends AppCompatActivity {

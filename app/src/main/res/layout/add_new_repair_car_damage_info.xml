@@ -214,7 +214,7 @@
             android:visibility="gone" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/upload_image_button"
+            android:id="@+id/capture_image_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/cost_container"
@@ -222,9 +222,26 @@
             android:layout_marginTop="20dp"
             android:backgroundTint="#0D8712"
             android:fontFamily="@font/aldrich"
-            android:text="Or upload image"
+            android:text="capture image"
             android:textSize="12sp"
             app:icon="@drawable/camera"
+            app:iconGravity="textEnd"
+            app:iconSize="25dp">
+
+        </com.google.android.material.button.MaterialButton>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/upload_image_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/capture_image_button"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#0D8712"
+            android:fontFamily="@font/aldrich"
+            android:text="upload image"
+            android:textSize="12sp"
+            app:icon="@drawable/upload"
             app:iconGravity="textEnd"
             app:iconSize="25dp">
 

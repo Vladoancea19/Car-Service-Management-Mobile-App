@@ -1,7 +1,9 @@
 package com.example.checkit.Dashboard.Profile;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,7 +15,9 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.checkit.Login.LoginActivity;
 import com.example.checkit.R;
+import com.google.android.material.button.MaterialButton;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -25,6 +29,7 @@ public class ProfileFragmentClient extends Fragment {
     private AlertDialog dialog;
     private TextView fullName, emailText, phoneNumberText;
     private ImageView qrCodeImage;
+    private MaterialButton logOutButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,9 +42,22 @@ public class ProfileFragmentClient extends Fragment {
         Button scanQrCode = view.findViewById(R.id.scan_qr_code_button);
         emailText = view.findViewById(R.id.email_text);
         phoneNumberText = view.findViewById(R.id.phone_number_text);
+        logOutButton = view.findViewById(R.id.log_out_button);
 
         //Managing buttons actions
         scanQrCode.setOnClickListener(v -> showQR());
+
+        logOutButton.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("rememberMe", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.apply();
+
+            startActivity(intent);
+            getActivity().finish();
+        });
 
         //Show user data
         showUserData();

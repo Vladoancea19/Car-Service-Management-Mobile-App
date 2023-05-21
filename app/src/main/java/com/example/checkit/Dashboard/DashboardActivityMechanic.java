@@ -4,11 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.graphics.Rect;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.example.checkit.Dashboard.Home.HomeFragmentMechanic;
 import com.example.checkit.Dashboard.Profile.ProfileFragmentMechanic;
 import com.example.checkit.R;
+import com.google.android.material.textfield.TextInputEditText;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 public class DashboardActivityMechanic extends AppCompatActivity {
@@ -42,4 +48,6 @@ public class DashboardActivityMechanic extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).commit();
         });
     }
+
+    // TODO dispatch touch event
 }

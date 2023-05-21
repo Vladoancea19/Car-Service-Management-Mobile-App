@@ -3,17 +3,18 @@ package com.example.checkit.Models;
 import java.util.ArrayList;
 
 public class RepairModel {
-    private String clientPhoneNumber, mechanicPhoneNumber, estimatedTime, state;
+    private String clientPhoneNumber, mechanicPhoneNumber, estimatedTime, state, uniqueID;
     private CarInfoModel carInfo;
     private ArrayList<CarDamageInfoModel> carDamageInfoList;
 
-    public RepairModel(String clientPhoneNumber, String mechanicPhoneNumber, CarInfoModel carInfo, ArrayList<CarDamageInfoModel> carDamageInfoList, String estimatedTime, String state) {
+    public RepairModel(String clientPhoneNumber, String mechanicPhoneNumber, CarInfoModel carInfo, ArrayList<CarDamageInfoModel> carDamageInfoList, String estimatedTime, String state, String uniqueID) {
         this.clientPhoneNumber = clientPhoneNumber;
         this.mechanicPhoneNumber = mechanicPhoneNumber;
         this.carInfo = carInfo;
         this.carDamageInfoList = carDamageInfoList;
         this.estimatedTime = estimatedTime;
         this.state = state;
+        this.uniqueID = uniqueID;
     }
 
     public String getState() {
@@ -62,5 +63,13 @@ public class RepairModel {
 
     public void setCarDamageInfoList(ArrayList<CarDamageInfoModel> carDamageInfoList) {
         this.carDamageInfoList = carDamageInfoList;
+    }
+
+    public String getUniqueID() {
+        return uniqueID;
+    }
+
+    public void setUniqueID(String uniqueID) {
+        this.uniqueID = uniqueID;
     }
 }

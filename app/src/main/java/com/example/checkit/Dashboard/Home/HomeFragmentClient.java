@@ -1,10 +1,14 @@
 package com.example.checkit.Dashboard.Home;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,6 +20,7 @@ import com.example.checkit.Models.MechanicDynamicRvModel;
 import com.example.checkit.R;
 import com.example.checkit.Models.MechanicStaticRvModel;
 import com.example.checkit.RecyclerView.Interface.RvUpdate;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 
