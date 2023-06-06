@@ -9,17 +9,23 @@
         <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/input_message_box.xml" value="0.1185" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/log_out_button.xml" value="0.3675" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/log_out_button_pressed.xml" value="0.27" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/profile_bkg_round_corners.xml" value="0.1375" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/profile_picture_shape.xml" value="0.1375" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/progress_bar.xml" value="0.1" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/progress_bar_shape.xml" value="0.1" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/repair_bkg.xml" value="0.2555" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/repair_bottom_info.xml" value="0.2905" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/round_add_button.xml" value="0.3455" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/round_corners_bottom_nav.xml" value="0.13" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/round_corners_user_profile.xml" value="0.2865" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/rv_bkg.xml" value="0.1585" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/rv_dynamic_item_received_message_bkg.xml" value="0.1" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/rv_dynamic_item_sent_message_bkg.xml" value="0.1" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/scan_qr__code_button.xml" value="0.3675" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/search.xml" value="0.1" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/search_box.xml" value="0.1" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/send_message_button.xml" value="0.1" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/service_note_bkg.xml" value="0.2555" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/splash_screen.xml" value="0.3665" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/static_items_bar.xml" value="0.1815" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/static_rv_bkg.xml" value="0.1" />
@@ -39,6 +45,7 @@
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/activity_sign_up.xml" value="0.36666666666666664" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/activity_sign_up_client.xml" value="0.36102564102564105" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/activity_sign_up_mechanic.xml" value="0.36102564102564105" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/add_new_car.xml" value="0.325" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/add_new_repair_car_damage_info.xml" value="0.36666666666666664" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/add_new_repair_car_info.xml" value="0.36666666666666664" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/add_new_repair_client_info.xml" value="0.36666666666666664" />
@@ -46,12 +53,18 @@
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/add_new_reparation_car_info.xml" value="0.1" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/add_new_reparation_client_details.xml" value="0.36666666666666664" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/add_new_reparation_client_info.xml" value="0.18796296296296297" />
-        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/chat_activity.xml" value="0.1" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/cars_fragment_client.xml" value="0.32592592592592595" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/chat_activity.xml" value="0.32592592592592595" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/chat_activity_client.xml" value="0.32592592592592595" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/chat_activity_mechanic.xml" value="0.32592592592592595" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/dadsa.xml" value="0.365625" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/dashboard_activity_client.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/dashboard_activity_mechanic.xml" value="0.365625" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/dynamic_rv_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/dynamic_rv_item_2.xml" value="0.365625" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/dynamic_rv_item_client_pending.xml" value="0.2861111111111111" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/dynamic_rv_progress_bar.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/fragment_cars_client.xml" value="0.8822055137844611" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/fragment_client_dashboard.xml" value="0.28055555555555556" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/fragment_client_history.xml" value="0.36666666666666664" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/fragment_client_ongoing.xml" value="0.36666666666666664" />
@@ -64,18 +77,29 @@
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/fragment_personal_info.xml" value="0.36666666666666664" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/fragment_qr_code.xml" value="0.2490740740740741" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/fragment_t_e_s_t_i_n_g.xml" value="0.36666666666666664" />
-        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/home_fragment_client.xml" value="0.36666666666666664" />
-        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/home_fragment_mechanic.xml" value="0.36102564102564105" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/home_fragment_client.xml" value="0.32146118721461187" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/home_fragment_mechanic.xml" value="0.32592592592592595" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/login.xml" value="0.36666666666666664" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/login_activity.xml" value="0.36666666666666664" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/popup.xml" value="0.36666666666666664" />
-        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/profile_fragment_client.xml" value="0.36102564102564105" />
-        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/profile_fragment_mechanic.xml" value="0.35185185185185186" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/profile_fragment_client.xml" value="0.32592592592592595" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/profile_fragment_mechanic.xml" value="0.32592592592592595" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/qr_code_popup.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/qr_popup.xml" value="0.32592592592592595" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/qr_scanner.xml" value="0.2064814814814815" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/repair_activity_client.xml" value="0.32592592592592595" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/repair_activity_mechanic.xml" value="0.32146118721461187" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/repair_popup.xml" value="0.325" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/rv_dynamic_item_cars.xml" value="0.325" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/rv_dynamic_item_done.xml" value="0.325" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/rv_dynamic_item_in_progress.xml" value="0.32592592592592595" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/rv_dynamic_item_pending_client.xml" value="0.36666666666666664" />
-        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/rv_dynamic_item_received_message.xml" value="0.3651041666666667" />
-        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/rv_dynamic_item_sent_message.xml" value="0.3651041666666667" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/rv_dynamic_item_received_message.xml" value="0.1" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/rv_dynamic_item_rejected.xml" value="0.1" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/rv_dynamic_item_repair.xml" value="0.325" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/rv_dynamic_item_repair_client.xml" value="0.32592592592592595" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/rv_dynamic_item_repair_mechanic.xml" value="0.325" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/rv_dynamic_item_sent_message.xml" value="0.1" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/rv_static_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/sign_up_activity.xml" value="0.36666666666666664" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/sign_up_client_fragment.xml" value="0.1" />
@@ -84,6 +108,8 @@
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/static_rv_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/menu/bottom_navigation_menu_client.xml" value="0.36666666666666664" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/menu/bottom_navigation_menu_mechanic.xml" value="0.36666666666666664" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/menu/client_dashboard_nav_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/menu/profile_nav_menu.xml" value="0.1" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1185" />

@@ -7,13 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".Dashboard.DashboardActivityClient"
     android:id="@+id/fragment_container"
-    android:background="#79CDD8">
+    android:background="@color/white">
 
     <com.ismaeldivita.chipnavigation.ChipNavigationBar
         android:id="@+id/bottom_navigation_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cnb_menuResource="@menu/bottom_navigation_menu"
+        app:cnb_menuResource="@menu/bottom_navigation_menu_client"
         android:layout_alignParentBottom="true"
         android:background="#FFFFFF"
         app:cnb_unselectedColor="@color/black"
@@ -21,6 +21,6 @@
         app:cnb_orientationMode="horizontal"
         android:layout_margin="0dp"
         android:padding="5dp"
-        android:elevation="8dp"/>
+        android:elevation="8dp" />
 
 </RelativeLayout>

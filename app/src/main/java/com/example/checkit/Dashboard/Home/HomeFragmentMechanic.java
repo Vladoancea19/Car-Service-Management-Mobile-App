@@ -5,28 +5,25 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,7 +32,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.checkit.CaptureAct;
 import com.example.checkit.Models.CarDamageInfoModel;
 import com.example.checkit.Models.CarInfoModel;
-import com.example.checkit.Models.MechanicDynamicRvModel;
+import com.example.checkit.Models.HomeDynamicRvModel;
 import com.example.checkit.Models.MechanicStaticRvModel;
 import com.example.checkit.Models.RepairModel;
 import com.example.checkit.R;
@@ -74,7 +71,7 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
     private RecyclerView dynamicRecyclerView;
     private ArrayList<MechanicStaticRvModel> staticItems = new ArrayList<>();
     private RvDynamicAdapterMechanic rvDynamicAdapterMechanic;
-    private static final int CAMERA_REQUEST = 1888;
+    private static final int CAMERA_REQUEST = 1888, GALLERY_REQUEST = 1889;
     private String mechanicPhoneNumber;
     private String clientPhoneNumber, clientFullName;
     private CarInfoModel carInfo;
@@ -82,12 +79,13 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
     private ArrayList<CarDamageInfoModel> carDamageInfoList;
     private RepairModel repairs;
     private TextInputEditText descriptionText, costText;
+    private View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.home_fragment_mechanic, container, false);
+        view = inflater.inflate(R.layout.home_fragment_mechanic, container, false);
 
         //Elements to variables
         MaterialButton addNewRepairButton = view.findViewById(R.id.add_new_repair_button);
@@ -110,9 +108,9 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
         staticRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         staticRecyclerView.setAdapter(rvStaticAdapterMechanic);
 
-        ArrayList<MechanicDynamicRvModel> dynamicItems = new ArrayList<>();
+        ArrayList<HomeDynamicRvModel> dynamicItems = new ArrayList<>();
         dynamicRecyclerView = view.findViewById(R.id.dynamic_rv_mechanic);
-        rvDynamicAdapterMechanic = new RvDynamicAdapterMechanic(dynamicItems, 0);
+        rvDynamicAdapterMechanic = new RvDynamicAdapterMechanic(getContext(), dynamicItems, 0);
         dynamicRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         dynamicRecyclerView.setAdapter(rvDynamicAdapterMechanic);
 
@@ -344,7 +342,7 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
         uploadImageButton.setOnClickListener(v -> {
             if(ContextCompat.checkSelfPermission(this.getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                 Intent cameraIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(cameraIntent, 1);
+                startActivityForResult(cameraIntent, GALLERY_REQUEST);
             }
             else {
                 requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 100);
@@ -445,14 +443,14 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
 
             if(!carDamageInfoList.isEmpty()) {
                 DatabaseReference newReference = reference.push();
-                String uniqueID = reference.push().getKey();
+                String uniqueID = newReference.getKey();
                 repairs = new RepairModel(clientPhoneNumber, mechanicPhoneNumber, carInfo, carDamageInfoList, estimatedTimeButton.getText().toString(), "pending", uniqueID);
                 newReference.setValue(repairs);
 
                 dialog3.dismiss();
             }
             else {
-                Toast.makeText(getActivity(), "YOU NEED TO ADD AT LEAST ONE REPAIR!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "You need to add at least one repair!", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -550,15 +548,33 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
 
     ActivityResultLauncher<ScanOptions> barLauncher = registerForActivityResult(new ScanContract(), result -> {
         if (result.getContents() != null) {
-            Objects.requireNonNull(phoneNumberContainer.getEditText()).setText(result.getContents());
+            String[] qrResult = result.getContents().split(";");
+
+            carModelContainer.getEditText().setText(qrResult[0]);
+            plateNumberContainer.getEditText().setText(qrResult[1]);
+            transmissionTypeContainer.getEditText().setText(qrResult[2]);
+            fuelTypeContainer.getEditText().setText(qrResult[3]);
+            manufactureYearContainer.getEditText().setText(qrResult[4]);
         }
     });
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
-    public void callback(int position, ArrayList<MechanicDynamicRvModel> items) {
-        rvDynamicAdapterMechanic = new RvDynamicAdapterMechanic(items, position);
+    public void callback(int position, ArrayList<HomeDynamicRvModel> items) {
+        rvDynamicAdapterMechanic = new RvDynamicAdapterMechanic(getContext(), items, position);
         rvDynamicAdapterMechanic.notifyDataSetChanged();
         dynamicRecyclerView.setAdapter(rvDynamicAdapterMechanic);
+
+        ImageView thumbsUpImage = view.findViewById(R.id.thumbs_up_image);
+        TextView upToDateText = view.findViewById(R.id.up_to_date_text);
+
+        if(items.isEmpty()) {
+            thumbsUpImage.setVisibility(View.VISIBLE);
+            upToDateText.setVisibility(View.VISIBLE);
+        }
+        else {
+            thumbsUpImage.setVisibility(View.GONE);
+            upToDateText.setVisibility(View.GONE);
+        }
     }
 }

@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Dashboard.Home.HomeFragmentClient" >
+    tools:context=".Dashboard.Home.HomeFragmentClient">
 
     <TextView
         android:id="@+id/title_client"
@@ -17,7 +17,7 @@
         android:text="Work in progress"
         android:textColor="#073F6C"
         android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@id/scroll_view_client"
+        app:layout_constraintBottom_toTopOf="@id/static_rv_client"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginRight="25dp"
         android:background="@drawable/search_box"
         android:singleLine="true"
         android:elevation="4dp"
@@ -42,10 +43,9 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="@+id/scroll_view_client"
+        app:layout_constraintStart_toStartOf="@+id/static_rv_client"
         app:layout_constraintTop_toBottomOf="@+id/title_client"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintWidth_percent=".92" />
+        app:layout_constraintVertical_bias="0" />
 
     <ImageView
         android:layout_width="30dp"
@@ -58,58 +58,62 @@
         android:translationZ="10dp"
         android:layout_marginRight="10dp"/>
 
-    <ScrollView
-        android:id="@+id/scroll_view_client"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/static_rv_client"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="132dp"
-        android:scrollbars="none"
+        android:layout_height="150dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_bar_client"
+        app:layout_constraintVertical_bias="0"
+        android:background="@drawable/rv_bkg">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dynamic_rv_client"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/rv_bkg"
+        android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:translationZ="10dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/static_rv_client"
+        app:layout_constraintVertical_bias="0"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#79CDD8">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="@+id/dynamic_rv_client"
+        app:layout_constraintBottom_toBottomOf="@+id/dynamic_rv_client"
+        app:layout_constraintLeft_toLeftOf="@+id/dynamic_rv_client"
+        app:layout_constraintRight_toRightOf="@id/dynamic_rv_client">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/static_rv_client"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0"
-                android:background="@drawable/rv_bkg">
+        <ImageView
+            android:id="@+id/thumbs_up_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/like"/>
 
-            </androidx.recyclerview.widget.RecyclerView>
+        <TextView
+            android:id="@+id/up_to_date_text"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:text="Up to date"
+            android:textSize="25dp"
+            android:fontFamily="@font/alatsi"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/dynamic_rv_client"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layout_constraintHeight_percent="0.56"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="90dp"
-                app:layout_constraintVertical_bias="0"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/static_rv_client"
-                android:background="@drawable/rv_bkg"
-                android:paddingBottom="10dp">
-            </androidx.recyclerview.widget.RecyclerView>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

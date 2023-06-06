@@ -1,11 +1,11 @@
 package com.example.checkit.Models;
 
-public class MechanicDynamicRvModel {
+public class HomeDynamicRvModel {
 
     private int progress;
     private String plateNumber, carModel, progressText, uniqueID;
 
-    public MechanicDynamicRvModel(int progress, String progressText, String plateNumber, String carModel, String uniqueID) {
+    public HomeDynamicRvModel(int progress, String progressText, String plateNumber, String carModel, String uniqueID) {
         this.progress = progress;
         this.progressText = progressText;
         this.plateNumber = plateNumber;
@@ -13,7 +13,7 @@ public class MechanicDynamicRvModel {
         this.uniqueID = uniqueID;
     }
 
-    public MechanicDynamicRvModel(String plateNumber, String carModel, String uniqueID) {
+    public HomeDynamicRvModel(String plateNumber, String carModel, String uniqueID) {
         this.plateNumber = plateNumber;
         this.carModel = carModel;
         this.uniqueID = uniqueID;

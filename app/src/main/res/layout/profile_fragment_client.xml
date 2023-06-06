@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".Dashboard.Profile.ProfileFragmentClient"
     android:background="@color/white"
-    android:scrollbars="none" >
+    android:scrollbars="none"
+    android:layout_marginBottom="50dp">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -38,7 +39,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"
-            android:layout_height="166dp"
+            android:layout_height="130dp"
             android:layout_weight="1"
             android:layout_margin="10dp"
             app:cardBackgroundColor="#FFFFFF"
@@ -51,13 +52,14 @@
                 android:padding="5dp"
                 tools:context=".PersonalInfo" >
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile_picture"
-                    android:layout_width="120dp"
-                    android:layout_height="110dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp"
-                    android:src="@drawable/profile_picture" />
+                    app:civ_border_color="#FF000000"
+                    app:civ_border_width="2dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -117,7 +119,7 @@
         android:layout_height="100dp"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
-        android:layout_marginTop="315dp">
+        android:layout_marginTop="280dp">
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="0dp"
@@ -175,7 +177,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="425dp"
+        android:layout_marginTop="390dp"
         android:paddingLeft="30dp"
         android:paddingRight="30dp">
 
@@ -235,7 +237,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginTop="545dp"
+        android:layout_marginTop="510dp"
         android:paddingLeft="30dp"
         android:paddingRight="30dp">
 

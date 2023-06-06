@@ -4,11 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="10dp">
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
-        android:layout_height="140dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/dynamic_rv_bkg"
         android:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,28 +51,63 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/car_model_container" />
 
+        <TextView
+            android:id="@+id/damage_info_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/plate_number_container"
+            android:text="Door dent\nBroken window"
+            app:layout_constraintHorizontal_bias="0"
+            android:layout_marginLeft="25dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/alatsi"
+            android:layout_marginTop="10dp"
+            />
+
+        <TextView
+            android:id="@+id/damage_info_list_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/alatsi"
+            android:text="300 lei\n550 lei"
+            android:layout_marginRight="25dp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toEndOf="@+id/damage_info_list"
+            app:layout_constraintTop_toBottomOf="@+id/plate_number_container" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/decline_button"
             android:layout_width="125dp"
             android:layout_height="50dp"
-            app:layout_constraintTop_toBottomOf="@+id/plate_number_container"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:cornerRadius="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="5dp"
             android:backgroundTint="#E1DBDB"
+            android:fontFamily="@font/aldrich"
+            android:letterSpacing="0.04"
             android:text="Decline"
             android:textAllCaps="false"
             android:textColor="#686464"
-            android:layout_marginLeft="25dp"
-            android:fontFamily="@font/aldrich"
-            android:letterSpacing="0.04"/>
+            app:cornerRadius="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/damage_info_list" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/accept_button"
             android:layout_width="125dp"
             android:layout_height="50dp"
             android:layout_marginLeft="30dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="5dp"
             android:backgroundTint="#6FBD69"
+            android:fontFamily="@font/aldrich"
+            android:letterSpacing="0.04"
             android:text="Accept"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
@@ -79,10 +115,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/decline_button"
-            app:layout_constraintTop_toBottomOf="@+id/plate_number_container"
-            android:layout_marginRight="25dp"
-            android:fontFamily="@font/aldrich"
-            android:letterSpacing="0.04"/>
+            app:layout_constraintTop_toBottomOf="@+id/damage_info_list" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

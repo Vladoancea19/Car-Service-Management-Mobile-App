@@ -24,7 +24,7 @@ public class DashboardActivityMechanic extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dashboard_activity_client);
+        setContentView(R.layout.dashboard_activity_mechanic);
 
         chipNavigationBar = findViewById(R.id.bottom_navigation_menu);
         chipNavigationBar.setItemSelected(R.id.bottom_navigation_menu_home, true);

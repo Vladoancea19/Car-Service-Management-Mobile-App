@@ -35,6 +35,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.Objects;
 
@@ -47,7 +48,6 @@ public class LoginActivity extends AppCompatActivity {
     TextInputLayout phoneNumberContainer, passwordContainer;
     CheckBox rememberMeButton;
     Button signUpButton, loginButton;
-
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -167,6 +167,14 @@ public class LoginActivity extends AppCompatActivity {
                                 editor.putBoolean(MECHANIC_ACCOUNT, false);
 
                                 editor.apply();
+
+                                FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> {
+                                    if(task.isSuccessful()) {
+                                        String fcmToken = task.getResult();
+
+                                        clientReference.child(phoneNumberInput).child("deviceToken").setValue(fcmToken);
+                                    }
+                                });
                             }
 
                             String firstNameStored = snapshot.child(phoneNumberInput).child("firstName").getValue(String.class);

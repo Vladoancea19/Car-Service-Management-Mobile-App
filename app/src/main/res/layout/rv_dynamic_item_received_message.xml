@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="4dp">
+    android:padding="4dp"
+    android:paddingEnd="50dp">
 
     <TextView
         android:id="@+id/receivedMessage"
@@ -11,18 +12,19 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rv_dynamic_item_received_message_bkg"
         android:padding="12dp"
+        android:fontFamily="@font/alatsi"
         android:textColor="@color/white"
         android:textSize="13sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.8"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/receivedDateTime"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:textColor="#9F9F9F"
+        android:textColor="#8F8F8F"
+        android:fontFamily="@font/aldrich"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/receivedMessage"/>

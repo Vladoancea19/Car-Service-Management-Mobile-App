@@ -11,6 +11,7 @@ import android.view.inputmethod.InputMethodManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.checkit.Dashboard.Cars.CarsFragmentClient;
 import com.example.checkit.Dashboard.Home.HomeFragmentClient;
 import com.example.checkit.Dashboard.Profile.ProfileFragmentClient;
 import com.example.checkit.R;
@@ -39,6 +40,9 @@ public class DashboardActivityClient extends AppCompatActivity {
             switch (i) {
                 case R.id.bottom_navigation_menu_home:
                     fragment = new HomeFragmentClient();
+                    break;
+                case R.id.bottom_navigation_menu_cars:
+                    fragment = new CarsFragmentClient();
                     break;
                 case R.id.bottom_navigation_menu_profile:
                     fragment = new ProfileFragmentClient();

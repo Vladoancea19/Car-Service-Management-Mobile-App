@@ -2,7 +2,7 @@ package com.example.checkit.Models;
 
 public class MechanicUserModel {
 
-    String firstName, lastName, email, phoneNumber, password;
+    String firstName, lastName, email, phoneNumber, password, profileImage;
 
     public MechanicUserModel(String firstName, String lastName, String email, String phoneNumber, String password) {
         this.firstName = firstName;
@@ -10,6 +10,7 @@ public class MechanicUserModel {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = password;
+        this.profileImage = "";
     }
 
     public String getFirstName() {
@@ -50,5 +51,13 @@ public class MechanicUserModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
     }
 }

@@ -17,7 +17,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.checkit.Chat.ChatActivity;
 import com.example.checkit.Dashboard.DashboardActivityClient;
 import com.example.checkit.Dashboard.DashboardActivityMechanic;
 import com.example.checkit.Login.LoginActivity;
