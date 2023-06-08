@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/close_popup_button"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/aldrich"
             android:text="Car informations"
             android:textColor="#000000"
@@ -55,11 +55,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/alatsi"
+                android:fontFamily="@font/aldrich"
                 android:inputType="text"
                 android:textColor="#000000"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textSize="14sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -85,11 +84,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/alatsi"
+                android:fontFamily="@font/aldrich"
                 android:inputType="text"
                 android:textColor="#000000"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textSize="14sp"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -115,11 +113,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/alatsi"
+                android:fontFamily="@font/aldrich"
                 android:inputType="number"
                 android:textColor="#000000"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textSize="14sp"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -145,11 +142,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/alatsi"
+                android:fontFamily="@font/aldrich"
                 android:inputType="text"
                 android:textColor="#000000"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textSize="14sp"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -175,11 +171,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/alatsi"
+                android:fontFamily="@font/aldrich"
                 android:inputType="text"
                 android:textColor="#000000"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textSize="14sp"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -190,12 +185,14 @@
             android:layout_below="@+id/fuel_type_container"
             android:layout_alignParentRight="true"
             android:layout_marginTop="25dp"
-            android:backgroundTint="#0D8712"
+            android:backgroundTint="#0FAE02"
             android:fontFamily="@font/aldrich"
             android:text="Add car"
             android:textSize="13sp"
             android:textStyle="bold"
+            app:cornerRadius="10dp"
             app:iconGravity="textEnd"
+            android:letterSpacing="0"
             app:iconSize="15dp">
 
         </com.google.android.material.button.MaterialButton>

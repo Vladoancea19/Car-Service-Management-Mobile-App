@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -36,6 +37,7 @@ public class RepairActivityMechanic extends AppCompatActivity implements RvUpdat
     private RecyclerView dynamicRecyclerView;
     private RvDynamicAdapterRepairMechanic rvDynamicAdapterRepairMechanic;
     private AlertDialog dialog1;
+    private MaterialButton doneButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,7 @@ public class RepairActivityMechanic extends AppCompatActivity implements RvUpdat
         TextView manufactureYear = findViewById(R.id.manufacture_year);
         TextView transmissionType = findViewById(R.id.transmission_type);
         TextView fuelType = findViewById(R.id.fuel_type);
-        MaterialButton doneButton = findViewById(R.id.done_button);
+        doneButton = findViewById(R.id.done_button);
 
         Intent intent = getIntent();
         repairID = intent.getStringExtra("repairID");
@@ -187,8 +189,21 @@ public class RepairActivityMechanic extends AppCompatActivity implements RvUpdat
 
         //Elements to variables
         MaterialButton closePopupButton = popupView.findViewById(R.id.close_popup_button);
+        MaterialButton finishRepairtButton = popupView.findViewById(R.id.finish_repair);
+        EditText serviceNote = popupView.findViewById(R.id.service_note);
 
         //Managing buttons actions
+        finishRepairtButton.setOnClickListener(v -> {
+            FirebaseDatabase database = FirebaseDatabase.getInstance("https://checkit-cd40f-default-rtdb.europe-west1.firebasedatabase.app/");
+
+            DatabaseReference repairRef = database.getReference("reparations").child(repairID);
+            repairRef.child("mechanicOk").setValue("ok");
+            repairRef.child("serviceNote").setValue(serviceNote.getText().toString());
+
+            doneButton.setEnabled(false);
+
+            dialog1.dismiss();
+        });
 
         //Create + show popup window
         dialogBuilder1.setView(popupView);

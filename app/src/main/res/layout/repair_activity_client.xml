@@ -4,17 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Repair.RepairActivityClient"
-    android:background="@color/black">
+    tools:context=".Repair.RepairActivityClient">
 
     <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
+        android:id="@+id/textView7"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hi,"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        android:textStyle="bold"
+        android:text="Your repair is in progress!"
+        android:textColor="#073F6C"
+        android:textSize="35sp"
         android:fontFamily="@font/aldrich"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,25 +21,7 @@
         app:layout_constraintVertical_bias="0"
         app:layout_constraintHorizontal_bias="0"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="40dp"/>
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/aldrich"
-        android:text="Your repair is in progress!"
-        android:textColor="#2E6A30"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintHorizontal_bias="0"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="40dp"/>
+        android:layout_marginStart="30dp"/>
 
     <TextView
         android:id="@+id/textView9"
@@ -49,9 +29,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/aldrich"
         android:text="Car info:"
-        android:textColor="#FF6600"
-        android:textSize="15sp"
-        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,10 +65,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="Plate number"
-                android:textSize="13sp"
+                android:textSize="16sp"
                 android:fontFamily="@font/aldrich"
-                android:textColor="@color/white"
-                android:textStyle="bold"/>
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/plate_number"
@@ -97,9 +75,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="B 23 MYE"
-                android:textSize="13sp"
+                android:textSize="14sp"
                 android:fontFamily="@font/aldrich"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:gravity="end"/>
 
         </LinearLayout>
@@ -115,10 +93,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="Car model"
-                android:textSize="13sp"
+                android:textSize="16sp"
                 android:fontFamily="@font/aldrich"
-                android:textColor="@color/white"
-                android:textStyle="bold"/>
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/car_model"
@@ -126,9 +103,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="Skoda Octavia"
-                android:textSize="13sp"
+                android:textSize="14sp"
                 android:fontFamily="@font/aldrich"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:gravity="end"/>
 
         </LinearLayout>
@@ -144,10 +121,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="Manufacture Year"
-                android:textSize="13sp"
+                android:textSize="16sp"
                 android:fontFamily="@font/aldrich"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/manufacture_year"
@@ -155,9 +131,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="2010"
-                android:textSize="13sp"
+                android:textSize="14sp"
                 android:fontFamily="@font/aldrich"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:gravity="end"/>
 
         </LinearLayout>
@@ -173,10 +149,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="Transmission Type"
-                android:textSize="13sp"
+                android:textSize="16sp"
                 android:fontFamily="@font/aldrich"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/transmission_type"
@@ -184,9 +159,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="Manual"
-                android:textSize="13sp"
+                android:textSize="14sp"
                 android:fontFamily="@font/aldrich"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:gravity="end"/>
 
         </LinearLayout>
@@ -201,10 +176,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="Fuel Type"
-                android:textSize="13sp"
+                android:textSize="16sp"
                 android:fontFamily="@font/aldrich"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/fuel_type"
@@ -212,9 +186,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="Gasoline"
-                android:textSize="13sp"
+                android:textSize="14sp"
                 android:fontFamily="@font/aldrich"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:gravity="end"/>
 
         </LinearLayout>
@@ -228,9 +202,8 @@
         android:layout_marginStart="30dp"
         android:fontFamily="@font/aldrich"
         android:text="Check repair status here:"
-        android:textColor="#FF6600"
-        android:textSize="15sp"
-        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
@@ -269,7 +242,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/aldrich"
-            android:text="ECT:"
+            android:text="ECD:"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -284,8 +257,7 @@
             android:fontFamily="@font/aldrich"
             android:text="6800"
             android:textColor="@color/white"
-            android:textSize="25sp"
-            android:textStyle="bold"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
@@ -300,8 +272,8 @@
             android:layout_marginStart="5dp"
             android:text="lei"
             android:textColor="@color/white"
-            android:textSize="15sp"
-            android:textStyle="bold"
+            android:textSize="14sp"
+            android:fontFamily="@font/aldrich"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
@@ -325,6 +297,7 @@
             app:layout_constraintVertical_bias="0"/>
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/picked_up_car"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -332,8 +305,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/estimated_completion_time"
             android:text="I picked up my car!"
-            android:backgroundTint="#FF6600"
-            />
+            android:fontFamily="@font/aldrich"
+            android:backgroundTint="#0FAE02"
+            android:enabled="false"
+            android:textSize="16sp"
+            android:letterSpacing="0"
+            app:cornerRadius="10dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

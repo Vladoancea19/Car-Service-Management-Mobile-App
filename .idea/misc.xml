@@ -21,6 +21,8 @@
         <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/rv_bkg.xml" value="0.1585" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/rv_dynamic_item_received_message_bkg.xml" value="0.1" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/rv_dynamic_item_sent_message_bkg.xml" value="0.1" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/rv_static_item_bkg.xml" value="0.2995" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/rv_static_item_selected_bkg.xml" value="0.2995" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/scan_qr__code_button.xml" value="0.3675" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/search.xml" value="0.1" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/drawable/search_box.xml" value="0.1" />
@@ -94,15 +96,17 @@
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/rv_dynamic_item_done.xml" value="0.325" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/rv_dynamic_item_in_progress.xml" value="0.32592592592592595" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/rv_dynamic_item_pending_client.xml" value="0.36666666666666664" />
-        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/rv_dynamic_item_received_message.xml" value="0.1" />
-        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/rv_dynamic_item_rejected.xml" value="0.1" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/rv_dynamic_item_received_message.xml" value="0.32146118721461187" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/rv_dynamic_item_rejected.xml" value="0.32592592592592595" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/rv_dynamic_item_repair.xml" value="0.325" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/rv_dynamic_item_repair_client.xml" value="0.32592592592592595" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/rv_dynamic_item_repair_mechanic.xml" value="0.325" />
-        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/rv_dynamic_item_sent_message.xml" value="0.1" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/rv_dynamic_item_sent_message.xml" value="0.32592592592592595" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/rv_static_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/sign_up_activity.xml" value="0.36666666666666664" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/sign_up_client_fragment.xml" value="0.1" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/sign_up_fragment_client.xml" value="0.32592592592592595" />
+        <entry key="..\:/Android/CheckIt/app/src/main/res/layout/sign_up_fragment_mechanic.xml" value="0.32592592592592595" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/splash_screen.xml" value="0.36666666666666664" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/splash_screen_activity.xml" value="0.36666666666666664" />
         <entry key="..\:/Android/CheckIt/app/src/main/res/layout/static_rv_item.xml" value="0.36666666666666664" />

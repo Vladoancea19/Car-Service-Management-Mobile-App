@@ -9,13 +9,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.checkit.Chat.ChatActivityClient;
+import com.example.checkit.Dashboard.Home.HomeFragmentClient;
 import com.example.checkit.Models.ClientRepairDynamicRvModel;
 import com.example.checkit.R;
 import com.example.checkit.RecyclerView.Dynamic.RvDynamicAdapterRepairClient;
 import com.example.checkit.RecyclerView.Interface.RvUpdateRepairClient;
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,11 +49,36 @@ public class RepairActivityClient extends AppCompatActivity implements RvUpdateR
         TextView manufactureYear = findViewById(R.id.manufacture_year);
         TextView transmissionType = findViewById(R.id.transmission_type);
         TextView fuelType = findViewById(R.id.fuel_type);
+        MaterialButton pickedUpCarButton = findViewById(R.id.picked_up_car);
 
         Intent intent = getIntent();
         repairID = intent.getStringExtra("repairID");
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://checkit-cd40f-default-rtdb.europe-west1.firebasedatabase.app/");
+
+        DatabaseReference repRef = database.getReference("reparations").child(repairID).child("mechanicOk");
+
+        repRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists())
+                    if(snapshot.getValue().equals("ok"))
+                        pickedUpCarButton.setEnabled(true);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        pickedUpCarButton.setOnClickListener(v -> {
+            DatabaseReference repRef1 = database.getReference("reparations").child(repairID).child("state");
+            repRef1.setValue("done");
+
+            Intent intent1 = new Intent(RepairActivityClient.this, HomeFragmentClient.class);
+            startActivity(intent1);
+        });
 
         DatabaseReference carInfoReference = database.getReference("reparations").child(repairID).child("carInfo");
 

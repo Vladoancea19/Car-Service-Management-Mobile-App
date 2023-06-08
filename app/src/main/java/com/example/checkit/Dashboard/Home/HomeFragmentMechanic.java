@@ -444,7 +444,7 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
             if(!carDamageInfoList.isEmpty()) {
                 DatabaseReference newReference = reference.push();
                 String uniqueID = newReference.getKey();
-                repairs = new RepairModel(clientPhoneNumber, mechanicPhoneNumber, carInfo, carDamageInfoList, estimatedTimeButton.getText().toString(), "pending", uniqueID);
+                repairs = new RepairModel(clientPhoneNumber, mechanicPhoneNumber, carInfo, carDamageInfoList, estimatedTimeButton.getText().toString(), "pending", "waiting", "", uniqueID);
                 newReference.setValue(repairs);
 
                 dialog3.dismiss();

@@ -31,8 +31,8 @@
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/aldrich"
             android:text="Step: 3 of 3"
-            android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
         <RelativeLayout
             android:id="@+id/step_icons"
@@ -44,18 +44,18 @@
                 android:id="@+id/client_icon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="16.5dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="16.5dp"
                 android:background="@drawable/client" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/client_icon"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
                 android:fontFamily="@font/aldrich"
                 android:text="Client info"
-                android:textColor="#000000"
+                android:textColor="@color/black"
                 android:textSize="14sp" />
 
             <ImageView
@@ -74,26 +74,26 @@
                 android:layout_centerHorizontal="true"
                 android:fontFamily="@font/aldrich"
                 android:text="Car info"
-                android:textColor="#000000"
+                android:textColor="@color/black"
                 android:textSize="14sp" />
 
             <ImageView
                 android:id="@+id/tools_icon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="16.25dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16.25dp"
                 android:background="@drawable/tools" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tools_icon"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="4dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="4dp"
                 android:fontFamily="@font/aldrich"
                 android:text="To repair"
-                android:textColor="#000000"
+                android:textColor="@color/black"
                 android:textSize="14sp" />
 
         </RelativeLayout>
@@ -106,7 +106,7 @@
             android:layout_marginTop="25dp"
             android:fontFamily="@font/aldrich"
             android:text="To repair"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
         <TextView
@@ -117,7 +117,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/aldrich"
             android:text="Description"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="16sp" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -132,11 +132,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/alatsi"
+                android:fontFamily="@font/aldrich"
                 android:inputType="textMultiLine"
-                android:textColor="#000"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="@color/black"
+                android:textSize="14sp"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -148,7 +147,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/aldrich"
             android:text="Cost"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="16sp" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -163,11 +162,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/alatsi"
+                android:fontFamily="@font/aldrich"
                 android:inputType="number"
-                android:textColor="#000"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textColor="@color/black"
+                android:textSize="14sp"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -220,13 +218,15 @@
             android:layout_below="@+id/cost_container"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:backgroundTint="#0D8712"
+            android:backgroundTint="#0FAE02"
             android:fontFamily="@font/aldrich"
             android:text="capture image"
+            android:letterSpacing="0"
             android:textSize="12sp"
             app:icon="@drawable/camera"
             app:iconGravity="textEnd"
-            app:iconSize="25dp">
+            app:iconSize="25dp"
+            app:cornerRadius="10dp">
 
         </com.google.android.material.button.MaterialButton>
 
@@ -237,10 +237,12 @@
             android:layout_below="@+id/capture_image_button"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:backgroundTint="#0D8712"
+            android:backgroundTint="#0FAE02"
             android:fontFamily="@font/aldrich"
             android:text="upload image"
+            android:letterSpacing="0"
             android:textSize="12sp"
+            app:cornerRadius="10dp"
             app:icon="@drawable/upload"
             app:iconGravity="textEnd"
             app:iconSize="25dp">
@@ -255,7 +257,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/aldrich"
             android:text="Estimated completion date"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="16sp" />
 
         <Button
@@ -265,8 +267,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/estimated_time_label"
             android:layout_marginTop="10dp"
-            android:textColor="#000000"
-            android:textSize="20sp" />
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:fontFamily="@font/aldrich"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/submit_button"
@@ -275,11 +278,13 @@
             android:layout_below="@+id/estimated_time_button"
             android:layout_alignParentRight="true"
             android:layout_marginTop="25dp"
-            android:backgroundTint="#0D8712"
+            android:backgroundTint="#0FAE02"
             android:fontFamily="@font/aldrich"
             android:text="Submit"
             android:textSize="13sp"
             android:textStyle="bold"
+            app:cornerRadius="10dp"
+            android:letterSpacing="0"
             app:iconGravity="textEnd"
             app:iconSize="15dp">
 

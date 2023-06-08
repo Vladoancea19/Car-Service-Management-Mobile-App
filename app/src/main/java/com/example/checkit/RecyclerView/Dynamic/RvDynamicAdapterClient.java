@@ -40,7 +40,7 @@ public class RvDynamicAdapterClient extends RecyclerView.Adapter<RvDynamicAdapte
     public class RvDynamicViewHolderClient extends RecyclerView.ViewHolder {
 
         ProgressBar progress;
-        TextView plateNumber, carModel, progressText, damageInfoList, getDamageInfoListCost;
+        TextView plateNumber, carModel, progressText, damageInfoList, getDamageInfoListCost, serviceNote;
         ConstraintLayout constraintLayout;
 
         public RvDynamicViewHolderClient(@NonNull View itemView) {
@@ -53,6 +53,7 @@ public class RvDynamicAdapterClient extends RecyclerView.Adapter<RvDynamicAdapte
             constraintLayout = itemView.findViewById(R.id.constraint_layout);
             damageInfoList = itemView.findViewById(R.id.damage_info_list);
             getDamageInfoListCost = itemView.findViewById(R.id.damage_info_list_cost);
+            serviceNote = itemView.findViewById(R.id.service_note);
         }
     }
 
@@ -61,6 +62,10 @@ public class RvDynamicAdapterClient extends RecyclerView.Adapter<RvDynamicAdapte
     public RvDynamicViewHolderClient onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if(pos == 0) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_dynamic_item_in_progress, parent, false);
+            return new RvDynamicViewHolderClient(view);
+        }
+        else if(pos == 1) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_dynamic_item_done, parent, false);
             return new RvDynamicViewHolderClient(view);
         }
         else if(pos == 2) {
@@ -87,6 +92,43 @@ public class RvDynamicAdapterClient extends RecyclerView.Adapter<RvDynamicAdapte
                 intent.putExtra("repairID", homeDynamicRvModels.get(position).getUniqueID());
 
                 context.startActivity(intent);
+            });
+        }
+        if(pos == 1) {
+            DatabaseReference repairReference = FirebaseDatabase.getInstance("https://checkit-cd40f-default-rtdb.europe-west1.firebasedatabase.app/").getReference("reparations").child(items.getUniqueID()).child("carDamageInfoList");
+
+            repairReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                String description = "";
+                String cost = "";
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot reparationSnapshot : snapshot.getChildren()) {
+                        description += (reparationSnapshot.child("description").getValue(String.class) + "\n");
+                        cost += (reparationSnapshot.child("cost").getValue(Long.class).toString() + "\n");
+                    }
+
+                    holder.damageInfoList.setText(description);
+                    holder.getDamageInfoListCost.setText(cost);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+            DatabaseReference repairRef = FirebaseDatabase.getInstance("https://checkit-cd40f-default-rtdb.europe-west1.firebasedatabase.app/").getReference("reparations").child(items.getUniqueID()).child("serviceNote");
+
+            repairRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    holder.serviceNote.setText(snapshot.getValue(String.class));
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
             });
         }
         if(pos == 2) {

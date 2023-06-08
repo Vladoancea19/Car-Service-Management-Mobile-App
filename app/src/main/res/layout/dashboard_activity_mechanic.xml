@@ -13,14 +13,17 @@
         android:id="@+id/bottom_navigation_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cnb_menuResource="@menu/bottom_navigation_menu_mechanic"
         android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
         android:background="#FFFFFF"
-        app:cnb_unselectedColor="@color/black"
-        app:cnb_radius="8dp"
-        app:cnb_orientationMode="horizontal"
-        android:layout_margin="0dp"
+        android:elevation="8dp"
         android:padding="5dp"
-        android:elevation="8dp" />
+        app:cnb_menuResource="@menu/bottom_navigation_menu_mechanic"
+        app:cnb_orientationMode="horizontal"
+        app:cnb_radius="8dp"
+        app:cnb_unselectedColor="@color/black" />
 
 </RelativeLayout>

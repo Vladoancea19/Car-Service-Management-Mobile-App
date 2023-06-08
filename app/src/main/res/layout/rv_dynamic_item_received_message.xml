@@ -12,9 +12,9 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rv_dynamic_item_received_message_bkg"
         android:padding="12dp"
-        android:fontFamily="@font/alatsi"
+        android:fontFamily="@font/aldrich"
         android:textColor="@color/white"
-        android:textSize="13sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

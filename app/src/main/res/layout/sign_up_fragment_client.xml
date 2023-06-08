@@ -31,11 +31,10 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/alatsi"
+                    android:fontFamily="@font/aldrich"
                     android:inputType="textPersonName"
                     android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="#000000"/>
+                    android:textColor="@color/black"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -51,11 +50,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/alatsi"
+                    android:fontFamily="@font/aldrich"
                     android:inputType="textPersonName"
                     android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="#000000"/>
+                    android:textColor="@color/black"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,11 +69,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/alatsi"
+                    android:fontFamily="@font/aldrich"
                     android:inputType="textEmailAddress"
                     android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="#000000"/>
+                    android:textColor="@color/black"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -92,11 +89,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/alatsi"
+                    android:fontFamily="@font/aldrich"
                     android:inputType="text|phone"
                     android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="#000000"/>
+                    android:textColor="@color/black"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -114,26 +110,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/alatsi"
+                    android:fontFamily="@font/aldrich"
                     android:inputType="textPassword"
                     android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="#000000"/>
+                    android:textColor="@color/black"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/sign_up_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:layout_marginBottom="0dp"
-            android:background="#000000"
+            android:backgroundTint="#073F6C"
+            android:textSize="14sp"
             android:text="Sign Up"
             android:fontFamily="@font/bungee"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
+            app:cornerRadius="10dp"
             android:transitionName="login_signup_transition"/>
 
         <Button
@@ -145,8 +142,9 @@
             android:background="@color/zxing_transparent"
             android:elevation="0dp"
             android:text="Already have an accout?"
-            android:fontFamily="@font/alatsi"
-            android:textColor="#000000"
+            android:textSize="14sp"
+            android:fontFamily="@font/aldrich"
+            android:textColor="@color/black"
             android:letterSpacing="0"
             android:transitionName="other_option_transition"/>
 

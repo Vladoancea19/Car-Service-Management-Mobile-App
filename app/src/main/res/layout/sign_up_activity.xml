@@ -25,7 +25,7 @@
         android:text="Welcome,"
         android:textSize="30sp"
         android:fontFamily="@font/bungee"
-        android:textColor="@color/black" />
+        android:textColor="#073F6C" />
 
     <TextView
         android:id="@+id/slogan_text"
@@ -34,8 +34,8 @@
         android:layout_marginTop="-20dp"
         android:layout_marginBottom="10dp"
         android:text="Sign up to start using checkIt!"
-        android:fontFamily="@font/alatsi"
-        android:textColor="#000000"
+        android:fontFamily="@font/aldrich"
+        android:textColor="#073F6C"
         android:textSize="16sp" />
 
     <LinearLayout
@@ -53,9 +53,9 @@
             android:elevation="0dp"
             android:textOff="Client"
             android:textOn="Client"
-            android:fontFamily="@font/alatsi"
-            android:textColor="#000000"
-            android:textSize="15sp"
+            android:fontFamily="@font/aldrich"
+            android:textColor="@color/black"
+            android:textSize="14sp"
             android:textStyle="bold"
             android:checked="true" />
 
@@ -69,11 +69,11 @@
             android:layout_marginBottom="5dp"
             android:background="@drawable/toggle_button"
             android:elevation="0dp"
-            android:fontFamily="@font/alatsi"
+            android:fontFamily="@font/aldrich"
             android:textOff="Mechanic"
             android:textOn="Mechanic"
-            android:textColor="#000000"
-            android:textSize="15sp" />
+            android:textColor="@color/black"
+            android:textSize="14sp" />
 
     </LinearLayout>
 

@@ -15,6 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.checkit.Models.HomeDynamicRvModel;
 import com.example.checkit.R;
 import com.example.checkit.Repair.RepairActivityMechanic;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -34,7 +39,7 @@ public class RvDynamicAdapterMechanic extends RecyclerView.Adapter<RvDynamicAdap
     public class RvDynamicViewHolderMechanic extends RecyclerView.ViewHolder {
 
         public ProgressBar progress;
-        public TextView plateNumber, carModel, progressText;
+        public TextView plateNumber, carModel, progressText, damageInfoList, getDamageInfoListCost, serviceNote;;
         ConstraintLayout constraintLayout;
 
         public RvDynamicViewHolderMechanic(@NonNull View itemView) {
@@ -45,6 +50,9 @@ public class RvDynamicAdapterMechanic extends RecyclerView.Adapter<RvDynamicAdap
             carModel = itemView.findViewById(R.id.car_model_container);
             progressText = itemView.findViewById(R.id.progress_text);
             constraintLayout = itemView.findViewById(R.id.constraint_layout);
+            damageInfoList = itemView.findViewById(R.id.damage_info_list);
+            getDamageInfoListCost = itemView.findViewById(R.id.damage_info_list_cost);
+            serviceNote = itemView.findViewById(R.id.service_note);
         }
     }
 
@@ -55,6 +63,10 @@ public class RvDynamicAdapterMechanic extends RecyclerView.Adapter<RvDynamicAdap
         if(pos == 0) {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_dynamic_item_in_progress, parent, false);
             return new RvDynamicViewHolderMechanic(view);
+        }
+        else if(pos == 1) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_dynamic_item_done, parent, false);
+            return new RvDynamicAdapterMechanic.RvDynamicViewHolderMechanic(view);
         }
         else {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rv_dynamic_item_rejected, parent, false);
@@ -76,6 +88,43 @@ public class RvDynamicAdapterMechanic extends RecyclerView.Adapter<RvDynamicAdap
                 intent.putExtra("repairID", homeDynamicRvModels.get(position).getUniqueID());
 
                 context.startActivity(intent);
+            });
+        }
+        if(pos == 1) {
+            DatabaseReference repairReference = FirebaseDatabase.getInstance("https://checkit-cd40f-default-rtdb.europe-west1.firebasedatabase.app/").getReference("reparations").child(items.getUniqueID()).child("carDamageInfoList");
+
+            repairReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                String description = "";
+                String cost = "";
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot reparationSnapshot : snapshot.getChildren()) {
+                        description += (reparationSnapshot.child("description").getValue(String.class) + "\n");
+                        cost += (reparationSnapshot.child("cost").getValue(Long.class).toString() + "\n");
+                    }
+
+                    holder.damageInfoList.setText(description);
+                    holder.getDamageInfoListCost.setText(cost);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+            DatabaseReference repairRef = FirebaseDatabase.getInstance("https://checkit-cd40f-default-rtdb.europe-west1.firebasedatabase.app/").getReference("reparations").child(items.getUniqueID()).child("serviceNote");
+
+            repairRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    holder.serviceNote.setText(snapshot.getValue(String.class));
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
             });
         }
 

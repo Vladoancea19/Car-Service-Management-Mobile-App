@@ -26,7 +26,7 @@
         android:text="Log Into checkIt"
         android:fontFamily="@font/bungee"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="#073F6C"
         android:textSize="30sp" />
 
     <LinearLayout
@@ -49,10 +49,10 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/toggle_button"
                 android:checked="true"
-                android:fontFamily="@font/alatsi"
+                android:fontFamily="@font/aldrich"
                 android:textOff="Client"
                 android:textOn="Client"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <ToggleButton
@@ -60,10 +60,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/toggle_button"
-                android:fontFamily="@font/alatsi"
+                android:fontFamily="@font/aldrich"
                 android:textOff="Mechanic"
                 android:textOn="Mechanic"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
         </LinearLayout>
 
@@ -81,11 +81,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/alatsi"
+                android:fontFamily="@font/aldrich"
                 android:inputType="number"
                 android:textSize="14sp"
-                android:textStyle="bold"
-                android:textColor="#000000" />
+                android:textColor="@color/black" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -104,11 +103,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/alatsi"
+                android:fontFamily="@font/aldrich"
                 android:inputType="textPassword"
                 android:textSize="14sp"
-                android:textStyle="bold"
-                android:textColor="#000000" />
+                android:textColor="@color/black" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -123,13 +121,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:background="#00000000"
+                android:background="@color/white"
                 android:elevation="0dp"
                 android:text="Remember me"
-                android:fontFamily="@font/alatsi"
+                android:fontFamily="@font/aldrich"
                 android:textAlignment="textStart"
                 android:paddingLeft="5dp"
-                android:textColor="#000000" />
+                android:textSize="14sp"
+                android:textColor="@color/black" />
 
             <View
                 android:layout_width="0dp"
@@ -144,23 +143,26 @@
                 android:background="@color/zxing_transparent"
                 android:elevation="0dp"
                 android:text="Forgot password?"
-                android:fontFamily="@font/alatsi"
+                android:textSize="14sp"
+                android:fontFamily="@font/aldrich"
                 android:textAllCaps="false"
                 android:textAlignment="textEnd"
                 android:letterSpacing="0"
-                android:textColor="#000000" />
+                android:textColor="@color/black" />
 
         </LinearLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/login_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="#000000"
+            android:backgroundTint="#073F6C"
             android:text="Login"
+            android:textSize="14sp"
             android:fontFamily="@font/bungee"
-            android:textColor="#fff"
+            android:textColor="@color/white"
+            app:cornerRadius="10dp"
             android:transitionName="login_signup_transition" />
 
         <Button
@@ -171,9 +173,10 @@
             android:layout_margin="5dp"
             android:background="@color/zxing_transparent"
             android:elevation="0dp"
+            android:textSize="14sp"
             android:text="Sign up for checkIt"
-            android:fontFamily="@font/alatsi"
-            android:textColor="#000"
+            android:fontFamily="@font/aldrich"
+            android:textColor="@color/black"
             android:letterSpacing="0"
             android:transitionName="other_option_transition" />
 

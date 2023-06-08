@@ -11,16 +11,16 @@
         android:id="@+id/title_mechanic"
         android:layout_width="wrap_content"
         android:layout_height="55dp"
-        android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/alatsi"
+        android:fontFamily="@font/aldrich"
+        android:letterSpacing="0"
+        android:textSize="35sp"
         android:text="Work in progress"
         android:textColor="#073F6C"
-        android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@id/static_rv_mechanic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/search_bar_mechanic"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0" />
 
@@ -34,7 +34,7 @@
         android:background="@drawable/search_box"
         android:singleLine="true"
         android:elevation="4dp"
-        android:fontFamily="@font/alatsi"
+        android:fontFamily="@font/aldrich"
         android:hint="Search"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
@@ -68,16 +68,17 @@
         android:layout_marginRight="10dp"
         android:layout_marginBottom="16dp"
         android:padding="0dp"
-        app:cornerRadius="20dp"
+        app:cornerRadius="10dp"
         app:icon="@drawable/plus_to_repair"
         android:backgroundTint="#073F6C"
         app:iconSize="9dp"
         app:iconGravity="textStart"
+        android:fontFamily="@font/aldrich"
         android:text="Add new"
         android:textSize="12sp"
         android:textColor="@color/white"
         android:textAllCaps="false"
-        android:letterSpacing="0.01"/>
+        android:letterSpacing="0"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/static_rv_mechanic"
@@ -132,8 +133,8 @@
             android:layout_height="40dp"
             android:layout_marginLeft="5dp"
             android:text="Up to date"
-            android:textSize="25dp"
-            android:fontFamily="@font/alatsi"/>
+            android:textSize="28dp"
+            android:fontFamily="@font/aldrich"/>
 
     </LinearLayout>
 
