@@ -13,8 +13,8 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/close_popup_button"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
@@ -52,6 +52,7 @@
             android:layout_below="@+id/car_model_label">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/car_model_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -81,6 +82,7 @@
             android:layout_below="@+id/plate_number_label">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/plate_number_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -110,6 +112,7 @@
             android:layout_below="@+id/manufacture_year_label">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/manufacture_year_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -139,6 +142,7 @@
             android:layout_below="@+id/transmission_type_label">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/transmission_type_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -168,6 +172,7 @@
             android:layout_below="@+id/fuel_type_label">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fuel_type_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

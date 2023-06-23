@@ -54,7 +54,6 @@ import java.io.IOException;
 
 public class ProfileFragmentClient extends Fragment {
 
-    private AlertDialog dialog;
     private TextView fullName, emailText, phoneNumberText;
     private ImageView profilePicture;
     private MaterialButton logOutButton;

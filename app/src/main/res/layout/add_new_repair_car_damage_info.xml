@@ -13,8 +13,8 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/close_popup_button_3"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
@@ -184,11 +184,11 @@
             android:textColor="#0D8712"
             android:textSize="10sp"
             android:textStyle="bold"
+            android:visibility="gone"
             app:icon="@drawable/plus_to_repair"
             app:iconGravity="textStart"
-            app:iconSize="15dp"
-            app:iconTint="#0D8712"
-            android:visibility="gone" />
+            app:iconSize="20dp"
+            app:iconTint="#0D8712" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/remove_repair_button"
@@ -207,7 +207,7 @@
             android:textStyle="bold"
             app:icon="@drawable/delete"
             app:iconGravity="textStart"
-            app:iconSize="15dp"
+            app:iconSize="20dp"
             app:iconTint="#FF1100"
             android:visibility="gone" />
 

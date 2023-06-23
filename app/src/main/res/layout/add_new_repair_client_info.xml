@@ -13,8 +13,8 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/close_popup_button_1"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
@@ -133,7 +133,7 @@
             app:cornerRadius="10dp"
             app:icon="@drawable/next_arrow"
             app:iconGravity="textEnd"
-            app:iconSize="15dp">
+            app:iconSize="20dp">
 
         </com.google.android.material.button.MaterialButton>
 

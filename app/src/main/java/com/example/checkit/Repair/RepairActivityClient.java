@@ -76,6 +76,9 @@ public class RepairActivityClient extends AppCompatActivity implements RvUpdateR
             DatabaseReference repRef1 = database.getReference("reparations").child(repairID).child("state");
             repRef1.setValue("done");
 
+            DatabaseReference repRef2 = database.getReference("chats").child(repairID);
+            repRef2.removeValue();
+
             Intent intent1 = new Intent(RepairActivityClient.this, HomeFragmentClient.class);
             startActivity(intent1);
         });

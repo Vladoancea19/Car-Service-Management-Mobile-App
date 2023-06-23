@@ -71,7 +71,7 @@
         app:cornerRadius="10dp"
         app:icon="@drawable/plus_to_repair"
         android:backgroundTint="#073F6C"
-        app:iconSize="9dp"
+        app:iconSize="20dp"
         app:iconGravity="textStart"
         android:fontFamily="@font/aldrich"
         android:text="Add new"

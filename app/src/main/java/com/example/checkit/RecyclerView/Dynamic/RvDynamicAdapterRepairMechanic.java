@@ -1,6 +1,7 @@
 package com.example.checkit.RecyclerView.Dynamic;
 
-import android.os.AsyncTask;
+import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.checkit.Models.MechanicRepairDynamicRvModel;
 import com.example.checkit.R;
 import com.google.firebase.database.DataSnapshot;
@@ -18,10 +23,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RvDynamicAdapterRepairMechanic extends RecyclerView.Adapter<RvDynamicAdapterRepairMechanic.RvDynamicViewHolderRepairMechanic> {
 
@@ -29,10 +36,20 @@ public class RvDynamicAdapterRepairMechanic extends RecyclerView.Adapter<RvDynam
     public String repairID;
     public String notificationDescription;
     public String tokenDevice;
+    public Context context;
+    public String clientPhoneNumber;
+    private String plateNumber;
 
-    public RvDynamicAdapterRepairMechanic(ArrayList<MechanicRepairDynamicRvModel> mechanicRepairDynamicRvModels, String repairID) {
+    private static final String FCM_API = "https://fcm.googleapis.com/fcm/send";
+    private static final String SERVER_KEY = "AAAAf7rl5ZA:APA91bGGCzYnilYE-Owxfrbv-EYPzHzqKCbw0RZsxN3jGJRC3kiAXJ4p3GOpvkjpNgDlrPjJaLWZgiDlHqu0-VOPo85jztOGgEnF5UAYoMMIQi9q6_mNVPBXZKpOQYOWlC3gxbzNaatD";
+    private static final String CONTENT_TYPE = "application/json";
+    private RequestQueue requestQueue;
+
+    public RvDynamicAdapterRepairMechanic(ArrayList<MechanicRepairDynamicRvModel> mechanicRepairDynamicRvModels, String repairID, Context context, String plateNumber) {
         this.mechanicRepairDynamicRvModels = mechanicRepairDynamicRvModels;
         this.repairID = repairID;
+        this.context = context;
+        this.plateNumber = plateNumber;
     }
 
     public class RvDynamicViewHolderRepairMechanic extends RecyclerView.ViewHolder {
@@ -84,7 +101,7 @@ public class RvDynamicAdapterRepairMechanic extends RecyclerView.Adapter<RvDynam
             }
         });
 
-        holder.checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+        holder.checkBox.setOnClickListener(v -> {
             holder.checkBox.setEnabled(false);
             holder.checkBox.setChecked(true);
 
@@ -111,10 +128,10 @@ public class RvDynamicAdapterRepairMechanic extends RecyclerView.Adapter<RvDynam
             });
 
             DatabaseReference clientReference2 = FirebaseDatabase.getInstance("https://checkit-cd40f-default-rtdb.europe-west1.firebasedatabase.app/").getReference("reparations").child(repairID);
-            clientReference2.addValueEventListener(new ValueEventListener() {
+            clientReference2.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    String clientPhoneNumber = snapshot.child("clientPhoneNumber").getValue(String.class);
+                    clientPhoneNumber = snapshot.child("clientPhoneNumber").getValue(String.class);
 
                     DatabaseReference tokenReference = FirebaseDatabase.getInstance("https://checkit-cd40f-default-rtdb.europe-west1.firebasedatabase.app/").getReference("client_users").child(clientPhoneNumber);
                     tokenReference.addValueEventListener(new ValueEventListener() {
@@ -122,9 +139,24 @@ public class RvDynamicAdapterRepairMechanic extends RecyclerView.Adapter<RvDynam
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             tokenDevice = snapshot.child("deviceToken").getValue(String.class);
 
-                            if(!tokenDevice.isEmpty()) {
+                            assert tokenDevice != null;
+                            if(!tokenDevice.equals("")) {
                                 notificationDescription = holder.description.getText() + " is done!";
-                                new NetworkTask().execute();
+
+                                JSONObject notification = new JSONObject();
+                                JSONObject notificationBody = new JSONObject();
+
+                                try {
+                                    notificationBody.put("title", plateNumber);
+                                    notificationBody.put("message", notificationDescription);
+                                    notification.put("to", tokenDevice);
+                                    notification.put("data", notificationBody);
+                                    Log.e("TAG", "try");
+                                } catch (JSONException e) {
+                                    Log.e("TAG", "onCreate: " + e.getMessage());
+                                }
+
+                                sendNotification(notification);
                             }
                         }
 
@@ -148,32 +180,26 @@ public class RvDynamicAdapterRepairMechanic extends RecyclerView.Adapter<RvDynam
         return mechanicRepairDynamicRvModels.size();
     }
 
-    private class NetworkTask extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected Void doInBackground(Void... params) {
-            try {
-                try {
-                    String title = "checkIt";
-                    String message = notificationDescription;
-                    URL url = new URL("https://fcm.googleapis.com/fcm/send");
-                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                    connection.setRequestMethod("POST");
-                    connection.setRequestProperty("Content-Type", "application/json");
-                    connection.setRequestProperty("Authorization", "key=" + "AAAAf7rl5ZA:APA91bH4vlBt0-TVvmTN7xFMBizAHKzr3yykwQdSksYca0aHeJBgFwAjvSc7_M1JyDNZ_s8MTHKDrcCGi2rUpKtEY1qo2ufVACkIMOF7aCD0t8b_X0NwCLKtQqGi0Uzirlamh6pY2Vld");
-                    connection.setDoOutput(true);
-
-                    String payload = "{\"to\": \"" + tokenDevice + "\", \"notification\": {\"title\": \"" + title + "\", \"body\": \"" + message + "\"}}";
-
-                    OutputStream outputStream = connection.getOutputStream();
-                    outputStream.write(payload.getBytes("UTF-8"));
-                    outputStream.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
+    private RequestQueue getRequestQueue() {
+        if (requestQueue == null) {
+            requestQueue = Volley.newRequestQueue(context);
         }
+        return requestQueue;
+    }
+
+    private void sendNotification(JSONObject notification) {
+        Log.e("TAG", "sendNotification");
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, FCM_API, notification,
+                response -> Log.i("TAG", "onResponse: " + response.toString()),
+                error -> Log.i("TAG", "onErrorResponse: Didn't work")) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<>();
+                params.put("Authorization", "key=" + SERVER_KEY);
+                params.put("Content-Type", CONTENT_TYPE);
+                return params;
+            }
+        };
+        getRequestQueue().add(jsonObjectRequest);
     }
 }

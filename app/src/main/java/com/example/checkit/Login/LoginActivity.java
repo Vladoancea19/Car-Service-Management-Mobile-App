@@ -1,9 +1,11 @@
 package com.example.checkit.Login;
 
+import android.Manifest;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -22,6 +24,7 @@ import android.widget.ToggleButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.example.checkit.Dashboard.DashboardActivityClient;
 import com.example.checkit.Dashboard.DashboardActivityMechanic;
@@ -41,6 +44,7 @@ import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private static final int NOTIFICATION_PERMISSION_REQUEST_CODE = 1;
     private static final String REMEMBER_ME = "rememberMe", PHONE_NUMBER = "phoneNumber", PASSWORD = "password", CLIENT_ACCOUNT = "clientAccount", MECHANIC_ACCOUNT = "mechanicAccount";
 
     ImageView logoImage;
@@ -96,6 +100,19 @@ public class LoginActivity extends AppCompatActivity {
             ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this, pairs);
             startActivity(intent, options.toBundle());
         });
+
+        if (!isNotificationPermissionGranted()) {
+            requestNotificationPermission();
+        }
+    }
+
+    private boolean isNotificationPermissionGranted() {
+        int notificationPermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.VIBRATE);
+        return notificationPermission == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void requestNotificationPermission() {
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.VIBRATE}, NOTIFICATION_PERMISSION_REQUEST_CODE);
     }
 
     private boolean validatePhoneNumber() {

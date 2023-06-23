@@ -21,6 +21,7 @@ import com.example.checkit.Dashboard.DashboardActivityClient;
 import com.example.checkit.Dashboard.DashboardActivityMechanic;
 import com.example.checkit.Login.LoginActivity;
 import com.example.checkit.R;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,6 +41,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.splash_screen_activity);
+
+        FirebaseApp.initializeApp(this);
 
         //Elements to variables
         logoImage = findViewById(R.id.logo_image);

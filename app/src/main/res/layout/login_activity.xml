@@ -135,20 +135,20 @@
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
-            <Button
-                android:id="@+id/forgot_password_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:background="@color/zxing_transparent"
-                android:elevation="0dp"
-                android:text="Forgot password?"
-                android:textSize="14sp"
-                android:fontFamily="@font/aldrich"
-                android:textAllCaps="false"
-                android:textAlignment="textEnd"
-                android:letterSpacing="0"
-                android:textColor="@color/black" />
+<!--            <Button-->
+<!--                android:id="@+id/forgot_password_button"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="end"-->
+<!--                android:background="@color/zxing_transparent"-->
+<!--                android:elevation="0dp"-->
+<!--                android:text="Forgot password?"-->
+<!--                android:textSize="14sp"-->
+<!--                android:fontFamily="@font/aldrich"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textAlignment="textEnd"-->
+<!--                android:letterSpacing="0"-->
+<!--                android:textColor="@color/black" />-->
 
         </LinearLayout>
 

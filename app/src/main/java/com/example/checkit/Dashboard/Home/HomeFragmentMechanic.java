@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -16,8 +17,10 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +39,7 @@ import com.example.checkit.Models.HomeDynamicRvModel;
 import com.example.checkit.Models.MechanicStaticRvModel;
 import com.example.checkit.Models.RepairModel;
 import com.example.checkit.R;
+import com.example.checkit.RecyclerView.Dynamic.RvDynamicAdapterClient;
 import com.example.checkit.RecyclerView.Dynamic.RvDynamicAdapterMechanic;
 import com.example.checkit.RecyclerView.Interface.RvUpdate;
 import com.example.checkit.RecyclerView.Static.RvStaticAdapterMechanic;
@@ -79,8 +83,10 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
     private ArrayList<CarDamageInfoModel> carDamageInfoList;
     private RepairModel repairs;
     private TextInputEditText descriptionText, costText;
+    private EditText searchBox;
     private View view;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -89,8 +95,16 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
 
         //Elements to variables
         MaterialButton addNewRepairButton = view.findViewById(R.id.add_new_repair_button);
+        searchBox = view.findViewById(R.id.search_bar_mechanic);
 
         //Managing buttons actions
+        view.setOnTouchListener((v, event) -> {
+            searchBox.clearFocus();
+            InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(searchBox.getWindowToken(), 0);
+            return false;
+        });
+
         addNewRepairButton.setOnClickListener(v -> {
             carDamageInfoList = new ArrayList<>();
             clientInfo();
@@ -126,8 +140,16 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
         Button closePopupButton1 = popupView.findViewById(R.id.close_popup_button_1);
         Button nextButton1 = popupView.findViewById(R.id.next_button_1);
         phoneNumberContainer = popupView.findViewById(R.id.phone_number_container);
+        TextInputEditText phoneNumber = popupView.findViewById(R.id.phone_number_text);
 
         //Managing buttons actions
+        popupView.setOnTouchListener((v, event) -> {
+            phoneNumber.clearFocus();
+            InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(phoneNumber.getWindowToken(), 0);
+            return false;
+        });
+
         nextButton1.setOnClickListener(v -> {
             String phoneNumberInput = Objects.requireNonNull(Objects.requireNonNull(phoneNumberContainer.getEditText()).getText()).toString();
 
@@ -181,6 +203,7 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
         closePopupButton1.setOnClickListener(v -> dialog1.dismiss());
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void carInfo() {
         AlertDialog.Builder dialogBuilder2 = new AlertDialog.Builder(getActivity());
         final View popupView = getLayoutInflater().inflate(R.layout.add_new_repair_car_info, null);
@@ -190,12 +213,28 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
         Button scanQRButton = popupView.findViewById(R.id.scan_qr_button);
         Button nextButton2 = popupView.findViewById(R.id.next_button_2);
         plateNumberContainer = popupView.findViewById(R.id.plate_number_container);
+        TextInputEditText plateNumber = popupView.findViewById(R.id.plate_number_text);
         carModelContainer = popupView.findViewById(R.id.car_model_container);
+        TextInputEditText carModel = popupView.findViewById(R.id.car_model_text);
         manufactureYearContainer = popupView.findViewById(R.id.manufacture_year_container);
+        TextInputEditText manufactureYear = popupView.findViewById(R.id.manufacture_year_text);
         transmissionTypeContainer = popupView.findViewById(R.id.transmission_type_container);
+        TextInputEditText transmissionType = popupView.findViewById(R.id.transmission_type_text);
         fuelTypeContainer = popupView.findViewById(R.id.fuel_type_container);
+        TextInputEditText fuelType = popupView.findViewById(R.id.fuel_type_text);
 
         //Managing buttons actions
+        popupView.setOnTouchListener((v, event) -> {
+            plateNumber.clearFocus();
+            carModel.clearFocus();
+            manufactureYear.clearFocus();
+            transmissionType.clearFocus();
+            fuelType.clearFocus();
+            InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(plateNumber.getWindowToken(), 0);
+            return false;
+        });
+
         scanQRButton.setOnClickListener(v -> scanQR());
         nextButton2.setOnClickListener(v -> {
             boolean validPlateNumber = false, validCarModel = false, validManufactureYear = false, validTransmissionType = false, validFuelType = false;
@@ -267,6 +306,7 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
         closePopupButton2.setOnClickListener(v -> dialog2.dismiss());
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void carDamageInfo() {
         AlertDialog.Builder dialogBuilder3 = new AlertDialog.Builder(getActivity());
         View popupView = getLayoutInflater().inflate(R.layout.add_new_repair_car_damage_info, null);
@@ -285,6 +325,14 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
         TextInputLayout costContainer = popupView.findViewById(R.id.cost_container);
 
         //Managing buttons actions
+        popupView.setOnTouchListener((v, event) -> {
+            descriptionText.clearFocus();
+            costText.clearFocus();
+            InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(descriptionText.getWindowToken(), 0);
+            return false;
+        });
+
         DatePickerDialog datePickerDialog;
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -467,7 +515,6 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
         try {
             CarDamageDetection cddModel = CarDamageDetection.newInstance(getActivity().getApplicationContext());
 
-            // Creates inputs for reference.
             TensorBuffer inputFeature0 = TensorBuffer.createFixedSize(new int[]{1, 224, 224, 3}, DataType.FLOAT32);
             ByteBuffer byteBuffer = ByteBuffer.allocateDirect(4 * 224 * 224 * 3);
             byteBuffer.order(ByteOrder.nativeOrder());
@@ -488,7 +535,6 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
 
             inputFeature0.loadBuffer(byteBuffer);
 
-            // Runs model inference and gets result.
             CarDamageDetection.Outputs outputs = cddModel.process(inputFeature0);
             TensorBuffer outputFeature0 = outputs.getOutputFeature0AsTensorBuffer();
 
@@ -508,7 +554,6 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
             descriptionText.setText(classes[maxProbabilityPosition]);
             costText.setText(costs[maxProbabilityPosition]);
 
-            // Releases model resources if no longer used.
             cddModel.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -561,6 +606,72 @@ public class HomeFragmentMechanic extends Fragment implements RvUpdate {
     @SuppressLint("NotifyDataSetChanged")
     @Override
     public void callback(int position, ArrayList<HomeDynamicRvModel> items) {
+        searchBox.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String searchText = s.toString();
+
+                if(!searchText.equals("")) {
+                    ArrayList<HomeDynamicRvModel> filteredList = new ArrayList<>();
+
+                    for (HomeDynamicRvModel item : items) {
+                        String carModel = item.getCarModel();
+                        String plateNumber = item.getPlateNumber();
+
+                        if(carModel != null && carModel.toLowerCase().contains(searchText.toLowerCase())) {
+                            filteredList.add(item);
+                        }
+                        else if(plateNumber != null && plateNumber.toLowerCase().contains(searchText.toLowerCase())) {
+                            filteredList.add(item);
+                        }
+                    }
+
+                    rvDynamicAdapterMechanic = new RvDynamicAdapterMechanic(view.getContext(), filteredList, position);
+                    rvDynamicAdapterMechanic.notifyDataSetChanged();
+                    dynamicRecyclerView.setAdapter(rvDynamicAdapterMechanic);
+
+                    ImageView thumbsUpImage = view.findViewById(R.id.thumbs_up_image);
+                    TextView upToDateText = view.findViewById(R.id.up_to_date_text);
+
+                    if(items.isEmpty()) {
+                        thumbsUpImage.setVisibility(View.VISIBLE);
+                        upToDateText.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        thumbsUpImage.setVisibility(View.GONE);
+                        upToDateText.setVisibility(View.GONE);
+                    }
+                }
+                else {
+                    rvDynamicAdapterMechanic = new RvDynamicAdapterMechanic(view.getContext(), items, position);
+                    rvDynamicAdapterMechanic.notifyDataSetChanged();
+                    dynamicRecyclerView.setAdapter(rvDynamicAdapterMechanic);
+
+                    ImageView thumbsUpImage = view.findViewById(R.id.thumbs_up_image);
+                    TextView upToDateText = view.findViewById(R.id.up_to_date_text);
+
+                    if(items.isEmpty()) {
+                        thumbsUpImage.setVisibility(View.VISIBLE);
+                        upToDateText.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        thumbsUpImage.setVisibility(View.GONE);
+                        upToDateText.setVisibility(View.GONE);
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         rvDynamicAdapterMechanic = new RvDynamicAdapterMechanic(getContext(), items, position);
         rvDynamicAdapterMechanic.notifyDataSetChanged();
         dynamicRecyclerView.setAdapter(rvDynamicAdapterMechanic);

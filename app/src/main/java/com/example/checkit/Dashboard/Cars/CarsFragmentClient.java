@@ -1,11 +1,15 @@
 package com.example.checkit.Dashboard.Cars;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -23,6 +27,7 @@ import com.example.checkit.R;
 import com.example.checkit.RecyclerView.Dynamic.RvDynamicAdapterClientCars;
 import com.example.checkit.RecyclerView.Interface.RvUpdateCars;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -97,6 +102,7 @@ public class CarsFragmentClient extends Fragment implements RvUpdateCars {
         return view;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void addNewCar() {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
         final View popupView = getLayoutInflater().inflate(R.layout.add_new_car, null);
@@ -104,13 +110,29 @@ public class CarsFragmentClient extends Fragment implements RvUpdateCars {
         //Elements to variables
         Button closePopupButton = popupView.findViewById(R.id.close_popup_button);
         TextInputLayout plateNumberContainer = popupView.findViewById(R.id.plate_number_container);
+        TextInputEditText plateNumber = popupView.findViewById(R.id.plate_number_text);
         TextInputLayout carModelContainer = popupView.findViewById(R.id.car_model_container);
+        TextInputEditText carModel = popupView.findViewById(R.id.car_model_text);
         TextInputLayout manufactureYearContainer = popupView.findViewById(R.id.manufacture_year_container);
+        TextInputEditText manufactureYear = popupView.findViewById(R.id.manufacture_year_text);
         TextInputLayout transmissionTypeContainer = popupView.findViewById(R.id.transmission_type_container);
+        TextInputEditText transmissionType = popupView.findViewById(R.id.transmission_type_text);
         TextInputLayout fuelTypeContainer = popupView.findViewById(R.id.fuel_type_container);
+        TextInputEditText fuelType = popupView.findViewById(R.id.fuel_type_text);
         MaterialButton submitButton = popupView.findViewById(R.id.submit_button);
 
         //Managing buttons actions
+        popupView.setOnTouchListener((v, event) -> {
+            plateNumber.clearFocus();
+            carModel.clearFocus();
+            manufactureYear.clearFocus();
+            transmissionType.clearFocus();
+            fuelType.clearFocus();
+            InputMethodManager imm = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(plateNumber.getWindowToken(), 0);
+            return false;
+        });
+
         submitButton.setOnClickListener(v -> {
             boolean validPlateNumber = false, validCarModel = false, validManufactureYear = false, validTransmissionType = false, validFuelType = false;
 
